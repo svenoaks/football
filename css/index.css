@@ -1,4 +1,12 @@
 .m-body {
     min-height: 2000px;
+
+}
+.m-container {
     padding-top:90px;
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
 }

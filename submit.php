@@ -1,5 +1,6 @@
 <?php
 
+include_once ("db.php");
 
 $sql = connectToDb();
 
@@ -46,14 +47,6 @@ function createHtml() {
 			</html>";
 }
 
-function connectToDb() {
-	$user="root";
-	$password="football555";
-	$database="Football";
-	$host = "localhost";
-	
-	$sql =  new mysqli($host, $user, $password, $database);
-	return $sql;
-}
+
 //createHtml();
 ?>

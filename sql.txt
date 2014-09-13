@@ -1,0 +1,74 @@
+//Show all User Matchups
+
+SELECT TimePeriodId,
+       UserAId,
+       UserAName,
+       UserBId,
+       UserBName
+FROM UserMatch,
+
+  (SELECT MatchId AS MatchAId,
+          Name AS UserAName
+   FROM User,
+        UserMatch
+   WHERE UserMatch.UserAId = User.UserId) AS UserA,
+
+  (SELECT MatchId AS MatchBId,
+          Name AS UserBName
+   FROM User,
+        UserMatch
+   WHERE UserMatch.UserBId = User.UserId) AS UserB
+WHERE UserMatch.MatchId = UserA.MatchAId
+  AND UserMatch.MatchId = UserB.MatchBId
+ORDER BY TimePeriodId
+
+// List winning picks user RichardDurden got in TimePeriod 2 (Week 2)
+
+SELECT User.UserId,
+       User.Name,
+       WinningTeamId,
+       Team.Name
+FROM
+  (SELECT UserId,
+          WinningTeamId
+   FROM Playing,
+        Pick
+   WHERE Playing.WinningTeamId = Pick.TeamId
+     AND Playing.TimePeriodId = 2) AS UserPickedWinner,
+     User, Team
+WHERE User.UserId = UserPickedWinner.UserId AND Team.TeamId = UserPickedWinner.WinningTeamId
+  AND User.Name = 'RichardDurden';
+  
+
+//Show all users picks in TimePeriod 2
+
+SELECT User.UserId,
+       User.Name,
+       Pick.TeamId,
+       Team.Name
+FROM
+	User, Pick, Team
+WHERE
+    User.UserId = Pick.UserId AND
+    Team.TeamId = Pick.TeamId AND
+    Pick.TimePeriodId = 2;
+ORDER BY User.UserId;
+
+//Show all winning teams in TimePeriod 2
+
+SELECT TimePeriodId,
+       WinningTeamId,
+       Name,
+       DivisionName
+FROM Playing,
+
+  (SELECT Team.TeamId,
+          Team.Name,
+          Division.Name AS DivisionName
+   FROM Team,
+        Division
+   WHERE Team.DivisionId = Division.DivisionId) AS TeamsDiv
+WHERE Playing.WinningTeamId = TeamsDiv.TeamId
+  AND TimePeriodId = 2
+ORDER BY DivisionName
+
