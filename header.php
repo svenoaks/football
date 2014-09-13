@@ -46,14 +46,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li <?=echoActiveClassIfRequestMatches("news")?>><a href="news.php">News</a></li>
+                    <li class="<?=echoActiveClassIfRequestMatches("home")?>"><a href="news.php">News</a></li>
                     <li> <a href="scorecard.php">Scorecard</a></li>
                     <li><a href="schedule.php">Full Schedule</a></li>
-                    <li class="dropdown">
+                    <li class="<?=echoActiveClassIfRequestMatches("home")?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li <?=echoActiveClassIfRequestMatches("results")?>><a href="results.php">Week 1</a></li>
+                            <li><a href="results.php">Week 1</a></li>
                             <li><a href="results.php">Week 2</a></li>
                             <li class="divider"></li>
                             <li><a href="all-results.php">All Results</a></li>

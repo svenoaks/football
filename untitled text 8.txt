@@ -1,8 +1,0 @@
-SELECT * 
-FROM (
-
-SELECT UserId
-FROM Pick
-INNER JOIN Playing ON Pick.TeamId = Playing.WinningTeamId
-WHERE UserId =44
-) AS UserPick;
