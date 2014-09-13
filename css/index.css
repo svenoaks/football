@@ -1,6 +1,14 @@
-.m-body {
-    min-height: 2000px;
+.no-select {
+	webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
 
+    /* Rules below not implemented in browsers yet */
+   -o-user-select: none;
+   user-select: none;
+}
+.m-body {
+   
 }
 .m-container {
     padding-top:90px;

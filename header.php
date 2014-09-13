@@ -46,10 +46,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="<?=echoActiveClassIfRequestMatches("home")?>"><a href="news.php">News</a></li>
+                    <li class="<?php echoActiveClassIfRequestMatches("news")?>"><a href="news.php">News</a></li>
                     <li> <a href="scorecard.php">Scorecard</a></li>
                     <li><a href="schedule.php">Full Schedule</a></li>
-                    <li class="<?=echoActiveClassIfRequestMatches("home")?>">
+                    <li class="<?php echoActiveClassIfRequestMatches("results")?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

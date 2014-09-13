@@ -1,60 +1,117 @@
 <?php
 	include_once("db.php");
  	include_once("utility.php");
-	include_once("header.php");
+	//include_once("header.php");
 	
-	define ("TIME_PERIOD", 1);
+	define ("TIME_PERIOD", '1');
 	
-	$db = connectToDb();
+	class Person {
+		 private $name;
+	     private $alias;
+	     private $picks = array();
+	     private $id;
+	     
+	     public function __construct($id)
+	     {
+	     	$this->id = $id;
+	     }
+	     public function getId()
+	     {
+	     	return $this->id;
+	     }
+	     public function pushPick($pick)
+	     {
+	         array_push($this->picks, $pick);
+	     }
+	     public function setAlias($alias)
+	     {
+	         $this->alias = $alias;
+	     }
+	     public function getAlias()
+	     {
+	         return $this->alias;
+	     }
+	     public function getPickAt($i)
+	     {
+	         return $this->picks[$i];
+	     }
+	     public function getPickCount()
+	     {
+	         return count($this->picks);
+	     }
+	}
+	class Pick {
+	     private $teamName;
+	     private $won;
+	     
+	     public function __construct($teamName, $won)
+	     {
+	         $this->teamName = $teamName;
+	         $this->won = $won;
+	     }
+	     public function getTeamName()
+	     {
+	         return $this->teamName;
+	     }
+	     public function didWin()
+	     {
+	         return $this->won;
+	     }
+	}
+	
 	$matchesSql =
-'	
-SELECT 
-       UserAAlias,
-       UserBAlias
-FROM UserMatch,
+	'	
+SELECT * 
+FROM  UserMatch
+WHERE TimePeriodId =' . TIME_PERIOD;
 
-  (SELECT MatchId AS MatchAId,
-          Alias AS UserAAlias
-   FROM Person,
-        UserMatch
-   WHERE UserMatch.UserAId = Person.UserId) AS UserA,
+    $picksByDivisionSql = 
+'
+SELECT Person.UserId, Person.Alias, TeamId, Picks.Name, DivisionId
+FROM (
+SELECT UserId, Team.TeamId, Team.Name, DivisionId
+FROM Pick, Team
+WHERE Pick.TeamId = Team.TeamId
+AND TimePeriodId =1
+) AS Picks, Person
+WHERE Picks.UserId = Person.UserId
+AND Person.UserId =
+';
+    $byDivisionSql = ' ORDER BY DivisionId';
 
-  (SELECT MatchId AS MatchBId,
-          Alias AS UserBAlias
-   FROM Person,
-        UserMatch
-   WHERE UserMatch.UserBId = Person.UserId) AS UserB
-WHERE UserMatch.MatchId = UserA.MatchAId
-  AND UserMatch.MatchId = UserB.MatchBId
-  AND TimePeriodId =' . TIME_PERIOD . ' ' .
-'ORDER BY UserAAlias;';
-
-	$ScoresSql =
-'	
-SELECT 
-       UserAAlias,
-       UserBAlias
-FROM UserMatch,
-
-  (SELECT MatchId AS MatchAId,
-          Alias AS UserAAlias
-   FROM Person,
-        UserMatch
-   WHERE UserMatch.UserAId = Person.UserId) AS UserA,
-
-  (SELECT MatchId AS MatchBId,
-          Alias AS UserBAlias
-   FROM Person,
-        UserMatch
-   WHERE UserMatch.UserBId = Person.UserId) AS UserB
-WHERE UserMatch.MatchId = UserA.MatchAId
-  AND UserMatch.MatchId = UserB.MatchBId
-  AND TimePeriodId = 1
-ORDER BY UserAAlias;';
-  
-    $matches = $db->query($matchesSql);
-    $matches->data_seek(0);
+	$db = connectToDb(); 
+	
+    $matchesRs = $db->query($matchesSql);
+    $matchesRs->data_seek(0);
+    $matchesArray = array();
     
+    while($row = $matchesRs->fetch_assoc()) {
+         
+         $personA = new Person($row['UserAId']);
+         $personB = new Person($row['UserBId']);
+         
+         $fetchPicks = function($person) {
+         	 global $db;
+         	 global $picksByDivisionSql;
+         	 global $byDivisionSql;
+         	 
+         	 $picksRs = $db->query($picksByDivisionSql . 
+         	      $person->getId() . $byDivisionSql);
+         	 $picksRs->data_seek(0);
+             while($row = $picksRs->fetch_assoc()) {
+                  $person->setAlias($row['Alias']);
+                  $pick = new Pick($row['Name'], false);
+                  $person->pushPick($pick);
+             }
+         };
+        
+        $fetchPicks($personA);
+        $fetchPicks($personB);
+         
+         array_push($matchesArray, array('personA' => $personA, 'personB' => $personB));
+    }
+    
+    $db->close();
 	include_once("results-html.php");
 	include_once("footer.php");
 ?>
