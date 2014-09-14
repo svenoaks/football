@@ -21,6 +21,10 @@
      color:#2d6ca2;
 }
 
+.light-blue {
+    color:#28a4c9;
+}
+
 @media (min-width: 1200px) {
     .container {
         width: 1000px;
@@ -55,9 +59,13 @@
 }
 
 .result-td-green {
-      background-color:rgba(185,232,124,0.2)
+      background-color:rgba(185,232,124,0.2);
 }
 
 .result-td-red {
-      background-color:rgba(232,124,124,0.5)
+      background-color:rgba(232,124,124,0.5);
+}
+
+.result-td-yellow {
+     background-color:rgba(237,237,97,0.5);
 }

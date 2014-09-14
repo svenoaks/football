@@ -52,16 +52,16 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="results.php">Week 1</a></li>
-                            <li><a href="results.php">Week 2</a></li>
+                            <?php for ($i = 1; $i <= DbHandler::CURRENT_TIME_PERIOD; ++$i) { ?>
+                            <li><a href="results.php?week=<?=$i;?>">Week <?=$i;?></a></li>
+                            <?php } ?>
                             <li class="divider"></li>
-                            <li><a href="all-results.php">All Results</a></li>
+                            <li><a href="results.php?week=all">All Results</a></li>
                         </ul>
                     </li>
                 </ul>
                 <form class="navbar-form navbar-right navbar-collapse collapse" action="html/form.html">
-               
-                         <button class="navbar-right btn btn-primary" role="button">Submission Form &raquo;</button>
+                         <button class="navbar-right btn btn-default" role="button">Weekly Submission Form &raquo;</button>
                 </form>
             </div>
             
