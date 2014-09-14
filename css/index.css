@@ -13,8 +13,44 @@
 .m-container {
     padding-top:90px;
 }
-@media (min-width: 992px) {
+
+@media (min-width: 1200px) {
     .container {
-        width: 970px;
+        width: 1000px;
     }
+}
+
+.result-table {
+	table-layout: fixed;
+}
+
+.result-th, .result-td {
+    
+    width: 150px;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow:ellipsis;
+}
+
+.result-table .result-td-right {
+    padding-left:15px;
+}
+
+.m-body .result-table .result-wl-th {
+		 overflow: hidden;
+    	 width: 40px;
+}
+
+
+.m-body .result-table .result-wl-td {
+		 overflow: hidden;
+    	 width: 40px;
+}
+
+.result-td-green {
+      background-color:rgba(185,232,124,0.2)
+}
+
+.result-td-red {
+      background-color:rgba(232,124,124,0.5)
 }

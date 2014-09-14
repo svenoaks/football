@@ -1,7 +1,7 @@
 <?php
 	include_once("db.php");
  	include_once("utility.php");
-	//include_once("header.php");
+	include_once("header.php");
 	
 	define ("TIME_PERIOD", '1');
 	
@@ -77,7 +77,15 @@ AND TimePeriodId =1
 WHERE Picks.UserId = Person.UserId
 AND Person.UserId =
 ';
-    $byDivisionSql = ' ORDER BY DivisionId';
+	$byDivisionSql = ' ORDER BY DivisionId';
+	
+    $winningIdSql =
+'
+SELECT COUNT( * ) As Total
+FROM Playing
+WHERE TimePeriodId =' .TIME_PERIOD .
+' AND WinningTeamId =
+';
 
 	$db = connectToDb(); 
 	
@@ -90,17 +98,26 @@ AND Person.UserId =
          $personA = new Person($row['UserAId']);
          $personB = new Person($row['UserBId']);
          
+         
          $fetchPicks = function($person) {
          	 global $db;
          	 global $picksByDivisionSql;
          	 global $byDivisionSql;
+         	
+         	$didWin = function($id) {
+         		global $db;
+         	 	global $winningIdSql;
+         	 	$d = $db->query($winningIdSql . $id);
+				return $d->fetch_assoc()['Total'];
+         	};
          	 
          	 $picksRs = $db->query($picksByDivisionSql . 
          	      $person->getId() . $byDivisionSql);
          	 $picksRs->data_seek(0);
              while($row = $picksRs->fetch_assoc()) {
                   $person->setAlias($row['Alias']);
-                  $pick = new Pick($row['Name'], false);
+                  $won = $didWin($row['TeamId']);
+                  $pick = new Pick($row['Name'], $won);
                   $person->pushPick($pick);
              }
          };

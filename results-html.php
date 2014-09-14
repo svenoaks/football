@@ -3,25 +3,27 @@
 	     $personA = $match['personA'];
 	     $personB = $match['personB'];   
      ?>
-	<div class="col-md-4">
+	<div class="col-md-6">
 		<h4 class="text-center"><?=$personA->getAlias();?> vs. <?=$personB->getAlias();?></h4>
-		<table class="table">
+		<table class="table result-table">
                     <thead>
                     <tr>
-                        <th>Team</th>
-                        <th>W/L</th>
-                        <th>W/L</th>
-                        <th>Team</th>
+                        <th class="result-th">Team</th>
+                        <th class="result-wl-th">W/L</th>
+                        <th class="result-wl-th">W/L</th>
+                        <th class="result-th">Team</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php for ($i = 0; $i < max($personA->getPickCount(), $personB->getPickCount()) - 1; $i++) {
+                    <?php for ($i = 0; $i < max($personA->getPickCount(), $personB->getPickCount()); $i++) {
+                                $personAWin = $personA->getPickAt($i)->didWin();
+                                $personBWin = $personB->getPickAt($i)->didWin();
                     ?>
                     <tr>
-                        <td><?=$personA->getPickAt($i)->getTeamName();?></td>
-                        <td></td>
-                        <td></td>
-                        <td><?=$personB->getPickAt($i)->getTeamName();?></td>
+                        <td class="result-td"><?=$personA->getPickAt($i)->getTeamName();?></td>
+                        <td class="result-wl-td<?=$personAWin ? ' result-td-green' : ' result-td-red'?>"><?=$personAWin ? 'W' : 'L'?></td>
+                        <td class="result-wl-td<?=$personBWin ? ' result-td-green' : ' result-td-red'?>"><?=$personBWin ? 'W' : 'L'?></td>
+                        <td class="result-td result-td-right"><?=$personB->getPickAt($i)->getTeamName();?></td>
                     <?php } ?>
                     </tbody>
                 </table>
