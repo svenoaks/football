@@ -1,17 +1,8 @@
 <?php
 
-include_once ("db.php");
+$db = new DbHandler();
+$week = DbHandler::CURRENT_TIME_PERIOD;
 
-$sql = connectToDb();
-
-if ($sql->connect_error) {
-    	die('Connect Error (' . $mysqli->connect_errno . ') '
-        . $mysqli->connect_error);
-	} 
-	else
-	{
-		echo "Connected to database successfully.";
-	}
 function createHtml() {
 
 	$userName = htmlspecialchars($_POST['user_name']);

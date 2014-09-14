@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
     <title>Office Football</title>
 
@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"><span class="">NCAA</span></a>
+                <a class="navbar-brand"><span class="">NCAA Week <?=DbHandler::CURRENT_TIME_PERIOD?></span></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -52,7 +52,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <?php for ($i = 1; $i <= DbHandler::CURRENT_TIME_PERIOD; ++$i) { ?>
+                            <?php for ($i = 1; $i <= DbHandler::CURRENT_TIME_PERIOD - 1; ++$i) { ?>
                             <li><a href="results.php?week=<?=$i;?>">Week <?=$i;?></a></li>
                             <?php } ?>
                             <li class="divider"></li>
@@ -61,7 +61,7 @@
                     </li>
                 </ul>
                 <form class="navbar-form navbar-right navbar-collapse collapse" action="html/form.html">
-                         <button class="navbar-right btn btn-default" role="button">Weekly Submission Form &raquo;</button>
+                         <button class="navbar-right btn btn-primary" role="button">Weekly Submission Form &raquo;</button>
                 </form>
             </div>
             
