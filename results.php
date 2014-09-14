@@ -43,11 +43,13 @@
 	class Pick {
 	     private $teamName;
 	     private $won;
+	     private $conditionalWin;
 	     
-	     public function __construct($teamName, $won)
+	     public function __construct($teamName, $won, $conditionalWin)
 	     {
 	         $this->teamName = $teamName;
 	         $this->won = $won;
+	         $this->conditionalWin = $conditionalWin;
 	     }
 	     public function getTeamName()
 	     {
@@ -57,9 +59,13 @@
 	     {
 	         return $this->won;
 	     }
+	     public function wasConditionalWin()
+	     {
+	         return $this->conditionalWin;	     
+	     }
 	}
 	
-	$matchesSql =
+		$matchesSql =
 	'	
 SELECT * 
 FROM  UserMatch
@@ -87,6 +93,7 @@ WHERE TimePeriodId =' .TIME_PERIOD .
 ' AND WinningTeamId =
 ';
 
+
 	$db = connectToDb(); 
 	
     $matchesRs = $db->query($matchesSql);
@@ -97,7 +104,6 @@ WHERE TimePeriodId =' .TIME_PERIOD .
          
          $personA = new Person($row['UserAId']);
          $personB = new Person($row['UserBId']);
-         
          
          $fetchPicks = function($person) {
          	 global $db;
@@ -117,7 +123,7 @@ WHERE TimePeriodId =' .TIME_PERIOD .
              while($row = $picksRs->fetch_assoc()) {
                   $person->setAlias($row['Alias']);
                   $won = $didWin($row['TeamId']);
-                  $pick = new Pick($row['Name'], $won);
+                  $pick = new Pick($row['Name'], $won, false);
                   $person->pushPick($pick);
              }
          };

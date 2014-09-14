@@ -1,11 +1,11 @@
  <div class="container m-container">
-        <div class="jumbotron">
-            <h1>Football in the Office</h1>
+        <div class="jumbotron m-jumbotron">
+            <h1><span class="blue">office</span><span class="orange">Football</span></h1>
 
             <p class="lead">Week 2 is completed! It's still a little too soon to start official power rankings, but a
                 hierarchy is beginning to take shape. Pay attention as this week marks the beginning of serious
                 conference play in the NCAA.</p>
-            <a class="btn btn-lg btn-primary" href="html/form.html" role="button">Weekly Submission Form &raquo;</a>
+           
         </div>
 
     </div>

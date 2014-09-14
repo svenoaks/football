@@ -1,4 +1,5 @@
 <div class="container m-container">
+    <h3 class="text-center">Week <?=TIME_PERIOD?> Results</h3>
 	<?php foreach ($matchesArray as $match) {
 	     $personA = $match['personA'];
 	     $personB = $match['personB'];   

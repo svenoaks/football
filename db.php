@@ -17,4 +17,13 @@
 		$sql =  new mysqli($host, $user, $password, $database);
 		return $sql;
 	}
+	class dbConfig {
+		private $db;
+		//static queries
+		public function __construct()
+		{
+		    
+		}
+	}
+	
 ?>
