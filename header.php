@@ -35,7 +35,8 @@
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                
+                	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -46,7 +47,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="<?php echoActiveClassIfRequestMatches("news")?>"><a href="news.php">News</a></li>
-                    <li><a href="schedule.php">Full Schedule</a></li>
+                    <li><a href="schedule.php">Schedule</a></li>
                     <li class="<?php echoActiveClassIfRequestMatches("results")?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span
                                 class="caret"></span></a>
@@ -58,11 +59,12 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right" action="html/form.html">
+                <form class="navbar-form navbar-right navbar-collapse collapse" action="html/form.html">
                
                          <button class="navbar-right btn btn-primary" role="button">Submission Form &raquo;</button>
                 </form>
             </div>
+            
             <!--/.nav-collapse -->
         </div>
     </div>
