@@ -32,25 +32,16 @@
                     <tfoot>
                     <tr>
                     <?php
-                         $scoreA = $personA->getScore($week);
-                         $scoreB = $personB->getScore($week);
-                         $tie = false;
-                         
-                         if ($scoreA > $scoreB) { $winner = $personA; }
-                         else 
-                            if ($scoreA < $scoreB) { $winner = $personB; }
-                         else
-                            if ($personA->wonTieBreaker($week)) { $tie = true; $winner = $personA; }
-                         else
-                             { $tie = true; $winner = $personB; }
+                        $tie = false; 
+                        if ($personA->wonTieBreaker($week) || $personB->wonTieBreaker($week)) { $tie = true; }
                     ?>
                         <th class="result-th">Total</th>
-                        <th class="result-wl-th text-center<?php if ($winner == $personA) 
+                        <th class="result-wl-th text-center<?php if ($personA->getWin($week)) 
                                                                    echo ' result-td-green'; 
-                                                                   else echo ' result-td-red';?>"><?=$scoreA;?></th>
-                        <th class="result-wl-th text-center<?php if ($winner == $personB) 
+                                                                   else echo ' result-td-red';?>"><?=$personA->getScore($week);?></th>
+                        <th class="result-wl-th text-center<?php if ($personB->getWin($week)) 
                                                                    echo ' result-td-green'; 
-                                                                   else echo ' result-td-red';?>"><?=$scoreB;?></th>
+                                                                   else echo ' result-td-red';?>"><?=$personB->getScore($week);?></th>
                         <th class="result-th"><?php if ($tie) echo 'Tiebreaker';?></th>
                     </tr>
                     </tfoot>

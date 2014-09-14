@@ -123,7 +123,7 @@ AND Person.UserId =' . $person->getId();
 	     private $id;
 	     private $scores = array();
 	     private $tieBreaker = array();
-	     private $wonMatch = array();
+	     private $wins = array();
 	     
 	     public function __construct($id)
 	     {
@@ -168,6 +168,16 @@ AND Person.UserId =' . $person->getId();
 	     public function wonTieBreaker($week)
 	     {
 	          return $this->tieBreaker;
+	     }
+	     public function setWin($week, $value)
+	     {
+	          $this->wins[$week] = $value;
+	     }
+	     public function getWin($week)
+	     {
+	          if (!array_key_exists($week, $this->wins))
+	             return false;
+	          return $this->wins[$week];
 	     }
 	}
 	class Pick {

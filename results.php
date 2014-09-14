@@ -44,6 +44,17 @@
 		
 			$personA->setScore($week, determineScore($personA, $week, $db));
 			$personB->setScore($week, determineScore($personB, $week, $db));
+			
+			$scoreA = $personA->getScore($week);
+			$scoreB = $personB->getScore($week);
+			 
+			if ($scoreA > $scoreB) { $personA->setWin($week, true); }
+			else 
+				if ($scoreA < $scoreB) { $personB->setWin($week, true); }
+			else
+				if ($personA->wonTieBreaker($week)) { $personA->setWin($week, true); }
+			else
+				 { $personB->setWin($week, true); }
 		 
 			array_push($matchesArray, array('personA' => $personA, 'personB' => $personB));
 	     }
