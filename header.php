@@ -47,7 +47,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="<?php echoActiveClassIfRequestMatches("news")?>"><a href="news.php">News</a></li>
-                    <li><a href="schedule.php">Schedule</a></li>
+                    <li class="<?php echoActiveClassIfRequestMatches("schedule")?>"><a href="schedule.php">Schedule</a></li>
                     <li class="<?php echoActiveClassIfRequestMatches("results")?>">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span
                                 class="caret"></span></a>

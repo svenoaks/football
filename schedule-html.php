@@ -5,9 +5,9 @@
 	<div class="col-md-4">
                 <h2 class="text-center">Week <?=$count;?></h2>
                  <table class="table">
-					<thead>
+    				<thead>
                     <tr>
-                        <th>Player</th>
+                        <th>Player &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vs.</th>
                         <th></th>
                         <th class="">Player</th>
                     </tr>	
@@ -19,7 +19,7 @@
                     ?>
                         <tr>
 							<td><?=$personA->getAlias();?></td>
-							<td> vs</td>
+							<td></td>
 							<td class=""><?=$personB->getAlias();?></td>
                         </tr>
                      <?php } ?>
