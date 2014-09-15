@@ -55,8 +55,6 @@
                             <?php for ($i = 1; $i <= DbHandler::CURRENT_TIME_PERIOD - 1; ++$i) { ?>
                             <li><a href="results.php?week=<?=$i;?>">Week <?=$i;?></a></li>
                             <?php } ?>
-                            <li class="divider"></li>
-                            <li><a href="results.php?week=all">All Results</a></li>
                         </ul>
                     </li>
                 </ul>

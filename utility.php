@@ -1,8 +1,28 @@
 <?php
-    function getAllMatches()
+    function determineTotalScores($allMatches, $limit)
+    {
+    	$people = array();
+    	for ($i = 1; $i <= $limit; ++$i)
+    	{
+    	   foreach ($allMatches[$i] as $match)
+    	   {
+    	       $personA = $match['personA'];
+    	       $personB = $match['personB'];
+    	       if (!array_key_exists($personA->getAlias(), $people))
+    	           $people[$personA->getAlias()] = 0;
+    	       if (!array_key_exists($personB->getAlias(), $people))
+    	           $people[$personB->getAlias()] = 0;
+    	           
+    	       if ($personA->getWin($i)) $people[$personA->getAlias()]++;
+    	       if ($personB->getWin($i)) $people[$personB->getAlias()]++;
+    	   }
+    	}
+    	return $people;
+    }
+    function getAllMatches($maxWeek)
     {
     	$allMatches = array();
-        for ($i = 1; $i <= DbHandler::CURRENT_TIME_PERIOD; ++$i)
+        for ($i = 1; $i <= $maxWeek; ++$i)
         {
             $allMatches[$i] = getMatches($i);
         }

@@ -14,22 +14,39 @@
 
         <div class="row">
             <div class="col-md-4">
-                <h2>Standings</h2>
+                <h2 class="text-center">Leaderboard</h2>
 
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                    magna mollis euismod. Donec sed odio dui. </p>
+                 <table class="table">
+					<thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>W/L</th>
+                    </tr>	
+					</thead>
+					<tbody>
+					<?php 
+					$maxRows = 6;
+					for ($i = 1; $i <= count($scores) & $i <= $maxRows; ++$i) { 
+						 $cur = each($scores);
+                    ?>
+                        <tr>
+                        	<td><?=$i . '. &nbsp;&nbsp; ' . $cur['key']?></td>
+							<td><?=($cur['value'] . ' - ' . ($week - 1 - $cur['value']))?></td>
+                        </tr>
+                     <?php } ?>
+					</tbody>
+				 </table>
 
 
             </div>
             <div class="col-md-4">
-                <h2>Current Schedule</h2>
+                <h2 class="text-center">Current Schedule</h2>
                  <table class="table">
 					<thead>
                     <tr>
                         <th>Player</th>
                         <th></th>
-                        <th>Player</th>
+                        <th class="">Player</th>
                     </tr>	
 					</thead>
 					<tbody>
@@ -39,15 +56,15 @@
                     ?>
                         <tr>
 							<td><?=$personA->getAlias();?></td>
-							<td>vs</td>
-							<td><?=$personB->getAlias();?></td>
+							<td> vs</td>
+							<td class=""><?=$personB->getAlias();?></td>
                         </tr>
                      <?php } ?>
 					</tbody>
 				 </table>
             </div>
             <div class="col-md-4">
-                <h2>Last Week's Results</h2>
+                <h2 class="text-center">Last Week's Results</h2>
                 <table class="table">
                     <thead>
                     <tr>

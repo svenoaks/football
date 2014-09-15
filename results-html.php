@@ -1,6 +1,6 @@
 <div class="container m-container">
     <h3 class="text-center header-result">Week <?=$week?> Results</h3>
-	<?php foreach ($matchesArray as $match) {
+	<?php foreach ($currentMatchesArray as $match) {
 	     $personA = $match['personA'];
 	     $personB = $match['personB'];   
      ?>

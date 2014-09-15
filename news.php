@@ -5,8 +5,12 @@
     $db = new DbHandler();
     $week = DbHandler::CURRENT_TIME_PERIOD;
     
-    $lastMatchesArray = getMatches($week - 1);
-    $currentMatchesArray = getMatches($week);
+    $allMatches = getAllMatches($week);
+    $lastMatchesArray = $allMatches[$week -1];
+    $currentMatchesArray = $allMatches[$week];
+    
+    $scores = determineTotalScores($allMatches, $week - 1);
+    arsort($scores);
     
     include_once("news-html.php");
  	include_once("footer.php");
