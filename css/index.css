@@ -1,31 +1,31 @@
 .no-select {
-	webkit-user-select: none; /* Chrome/Safari */        
+    webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
 
     /* Rules below not implemented in browsers yet */
-   -o-user-select: none;
-   user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 .header-result {
     margin-top:0;
 }
 
 .m-body {
-   
+
 }
 .m-body .m-jumbotron {
-	border: 1px solid #2d6ca2;
+    border: 1px solid #2d6ca2;
 }
 .m-container {
     padding-top:90px;
 }
 
 .span-orange {
-     color:#f7931e;
+    color:#f7931e;
 }
 .span-blue {
-     color:#2d6ca2;
+    color:#2d6ca2;
 }
 
 .light-blue {
@@ -42,56 +42,56 @@
         width:150px;
     }
     .m-body .result-table .result-wl-th {
-    	 width: 40px;
-	}
-	.m-body .result-table .result-wl-td {
-    	 width: 40px;
-	}
+        width: 40px;
+    }
+    .m-body .result-table .result-wl-td {
+        width: 40px;
+    }
 }
 @media (max-width: 767px) {
     .result-th, .result-td {
         width:35px;
     }
     .m-body .result-table .result-wl-th {
-    	 width: 25px;
-	}
-	.m-body .result-table .result-wl-td {
-    	 width: 25px;
-	}
+        width: 25px;
+    }
+    .m-body .result-table .result-wl-td {
+        width: 25px;
+    }
 }
 .result-table {
-	table-layout: fixed;
+    table-layout: fixed;
 }
 
 .result-th, .result-td {
-    
-    white-space: nowrap; 
-    overflow: hidden; 
+
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow:ellipsis;
 }
 
 .result-table .result-td-right {
-   
+
 }
 
 .m-body .result-table .result-wl-th {
-		 overflow: hidden;
+    overflow: hidden;
 }
 
 
 .m-body .result-table .result-wl-td {
-		 overflow: hidden;
-    	 
+    overflow: hidden;
+
 }
 
 .result-td-green {
-      background-color:rgba(185,232,124,0.2);
+    background-color:rgba(185,232,124,0.3);
 }
 
 .result-td-red {
-      background-color:rgba(232,124,124,0.5);
+    background-color:rgba(232,124,124,0.5);
 }
 
 .result-td-yellow {
-     background-color:rgba(237,237,97,0.5);
+    background-color:rgba(237,237,97,0.5);
 }

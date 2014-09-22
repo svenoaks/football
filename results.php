@@ -5,6 +5,8 @@
 	$week = $_GET['week'];
 	$allMatches = getAllMatches($week);
     $currentMatchesArray = $allMatches[$week];
+
+    $scores = determineTotalScores($allMatches, $week);
 	
 	include_once("results-html.php");
 	include_once("footer.php");
