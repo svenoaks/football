@@ -1,4 +1,17 @@
 <?php
+function retrieveAliasFor($person, $db)
+{
+    $aliasRs = $db->queryForAlias($person);
+    $aliasRs->data_seek(0);
+    return $aliasRs->fetch_assoc()['Alias'];
+}
+
+function determineTeamId($name, $db)
+{
+    $teamRs = $db->queryForTeamId($name);
+    $teamRs->data_seek(0);
+    return $teamRs->fetch_assoc()['TeamId'];
+}
 function determineTotalScores($allMatches, $limit)
 {
     $people = array();
@@ -38,6 +51,9 @@ function getMatches($week)
         $personA = new Person($row['UserAId']);
         $personB = new Person($row['UserBId']);
 
+        $personA->setAlias(retrieveAliasFor($personA, $db));
+        $personB->setAlias(retrieveAliasFor($personB, $db));
+
         $fetchPicks = function ($person, $week, $db) {
 
             $fetchWin = function ($id, $week, $db) {
@@ -48,7 +64,6 @@ function getMatches($week)
             $picksRs = $db->queryForPicks($person, $week);
             $picksRs->data_seek(0);
             while ($row = $picksRs->fetch_assoc()) {
-                $person->setAlias($row['Alias']);
                 $winRow = $fetchWin($row['TeamId'], $week, $db);
                 $won = $winRow['Total'];
                 $conditionalWin = $winRow['ConditionalWin'];
@@ -122,7 +137,37 @@ class DbHandler
     {
         $this->db->close();
     }
+    public function insertPlaying($A, $B, $W, $week)
+    {
+        if (!isset($A)) $A = 'NULL';
+        if (!isset($B)) $B = 'NULL';
+        if (!isset($W)) $W = 'NULL';
+        $insertSql =
+            '
+            INSERT INTO OfficeFootball.Playing (PlayingId, TimePeriodId, TeamAId,
+            TeamBId, WinningTeamId, ConditionalWin) VALUES (NULL, ' . $week . ',' . $A . ',' . $B . ',' . $W . ',' . '0)';
+        return $this->db->query($insertSql);
+        
+    }
+    public function queryForTeamId($name)
+    {
+        $teamSql =
+            "
+SELECT *
+FROM Team
+WHERE Name = '$name'";
+        return $this->db->query($teamSql);
 
+    }
+    public function queryForAlias($person)
+    {
+        $aliasSql =
+            '
+SELECT *
+FROM Person
+WHERE UserId = ' . $person->getId();
+        return $this->db->query($aliasSql);
+    }
     public function queryForTieBreaker($person, $week)
     {
         $tieBreakerSql =

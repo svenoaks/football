@@ -43,20 +43,24 @@
     }
     .m-body .result-table .result-wl-th {
         width: 40px;
+
     }
     .m-body .result-table .result-wl-td {
         width: 40px;
+
     }
 }
 @media (max-width: 767px) {
     .result-th, .result-td {
-        width:35px;
+        width:100px;
     }
     .m-body .result-table .result-wl-th {
-        width: 25px;
+        width: 30px;
+        max-width:30px;
     }
     .m-body .result-table .result-wl-td {
-        width: 25px;
+        width: 30px;
+        max-width:30px;
     }
 }
 .result-table {
