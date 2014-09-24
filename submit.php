@@ -1,43 +1,25 @@
 <?php
 
+include_once("db.php");
+include_once("utility.php");
+
 $db = new DbHandler();
 $week = DbHandler::CURRENT_TIME_PERIOD;
 
-function createHtml() {
+reset($_POST);
 
-	$userName = htmlspecialchars($_POST['user_name']);
-	$userPass = htmlspecialchars($_POST['user_password']);
-	$optionAmerican = htmlspecialchars($_POST['option_american']);
-	$optionAcc = htmlspecialchars($_POST['option_acc']);
-	$optionBig10 = htmlspecialchars($_POST['option_big10']);
-	$optionBig12 = htmlspecialchars($_POST['option_big12']);
-	$optionPac12 = htmlspecialchars($_POST['option_pacific12']);
-	$optionSE = htmlspecialchars($_POST['option_southeastern']);
-	$optionNonAq = htmlspecialchars($_POST['option_nonaq']);
-	
-	echo "<!DOCTYPE html>
-			<html>
-				<head>
-				<title>Form Submissiont</title>
-				<meta http-equiv=\"refresh\" content=\"5;index.php\" />
-				</head>
-				<body>
-				<h2>Form submission successful!</h2>
-				<ul>
-					<li><h3>User Name: $userName</h3></li>
-					<li><h3>User Pass: $userPass</h3></li>
-					<li><h3>American: $optionAmerican</h3></li>
-					<li><h3>ACC: $optionAcc</h3></li>
-					<li><h3>Big10: $optionBig10</h3></li>
-					<li><h3>Big12: $optionBig12</h3></li>
-					<li><h3>Pac12: $optionPac12</h3></li>
-					<li><h3>SE: $optionSE</h3></li>
-					<li><h3>Non-AQ: $optionNonAq</h3></li>
-				</ul
-				</body>
-			</html>";
+$userName = htmlspecialchars(each($_POST)['value']);
+$userPass = htmlspecialchars(each($_POST)['value']);
+
+$userId = $db->queryForUserId($userName, $userPass);
+
+while (list($key, $value) = each($_POST))
+{
+    $teamId = determineTeamId(htmlspecialchars($value), $db);
+    if (isset($teamId)) $db->insertPick($userId, $week, $teamId);
 }
 
+header("Location: news.php");
 
-//createHtml();
-?>
+
+

@@ -8,10 +8,12 @@ function retrieveAliasFor($person, $db)
 
 function determineTeamId($name, $db)
 {
+
     $teamRs = $db->queryForTeamId($name);
     $teamRs->data_seek(0);
     return $teamRs->fetch_assoc()['TeamId'];
 }
+
 function determineTotalScores($allMatches, $limit)
 {
     $people = array();
@@ -122,144 +124,6 @@ function wonTieBreaker($person, $week, $db)
     return $tieRs->fetch_assoc()['Total'];
 }
 
-class DbHandler
-{
-    const CURRENT_TIME_PERIOD = 2;
-
-    private $db;
-
-    public function __construct()
-    {
-        $this->db = $this->connectToDbLocal();
-    }
-
-    public function __destruct()
-    {
-        $this->db->close();
-    }
-    public function insertPlaying($A, $B, $W, $week)
-    {
-        if (!isset($A)) $A = 'NULL';
-        if (!isset($B)) $B = 'NULL';
-        if (!isset($W)) $W = 'NULL';
-        $insertSql =
-            '
-            INSERT INTO OfficeFootball.Playing (PlayingId, TimePeriodId, TeamAId,
-            TeamBId, WinningTeamId, ConditionalWin) VALUES (NULL, ' . $week . ',' . $A . ',' . $B . ',' . $W . ',' . '0)';
-        return $this->db->query($insertSql);
-        
-    }
-    public function queryForTeamId($name)
-    {
-        $teamSql =
-            "
-SELECT *
-FROM Team
-WHERE Name = '$name'";
-        return $this->db->query($teamSql);
-
-    }
-    public function queryForAlias($person)
-    {
-        $aliasSql =
-            '
-SELECT *
-FROM Person
-WHERE UserId = ' . $person->getId();
-        return $this->db->query($aliasSql);
-    }
-    public function queryForTieBreaker($person, $week)
-    {
-        $tieBreakerSql =
-            '
-SELECT COUNT( * ) As Total
-FROM TieBreaker
-WHERE TimePeriodId =' . $week .
-            ' AND UserId =' . $person->getId();
-        return $this->db->query($tieBreakerSql);
-    }
-
-    public function queryForMatches($week)
-    {
-        $matchesSql =
-            '
-SELECT * 
-FROM  UserMatch
-WHERE TimePeriodId =' . $week;
-        return $this->db->query($matchesSql);
-    }
-
-    public function queryForPicks($person, $week)
-    {
-        $byDivisionSql = ' ORDER BY DivisionId';
-        $picksByDivisionSql =
-            '
-SELECT Person.UserId, Person.Alias, TeamId, Picks.Name, DivisionId
-FROM (
-SELECT UserId, Team.TeamId, Team.Name, DivisionId
-FROM Pick, Team
-WHERE Pick.TeamId = Team.TeamId
-AND TimePeriodId =' . $week . '
-) AS Picks, Person
-WHERE Picks.UserId = Person.UserId
-AND Person.UserId =' . $person->getId() . ' ' . $byDivisionSql;
-
-        return $this->db->query($picksByDivisionSql);
-    }
-
-    public function queryForWinning($teamId, $week)
-    {
-        $winningIdSql =
-            '
-SELECT COUNT( * ) As Total, ConditionalWin
-FROM Playing
-WHERE TimePeriodId =' . $week .
-            ' AND WinningTeamId =' . $teamId;
-        return $this->db->query($winningIdSql);
-    }
-
-    public function queryForScore($person, $week)
-    {
-        $scoreSql =
-            '
-SELECT COUNT( * ) AS Total
-FROM (
-
-SELECT UserId, WinningTeamId
-FROM Playing, Pick
-WHERE Playing.WinningTeamId = Pick.TeamId
-AND Playing.TimePeriodId =' . $week . ' ' . '
-AND Pick.TimePeriodId =' . $week . ' ' . '
-) AS UserPickedWinner, Person, Team
-WHERE Person.UserId = UserPickedWinner.UserId
-AND Team.TeamId = UserPickedWinner.WinningTeamId
-AND Person.UserId =' . $person->getId();
-
-        return $this->db->query($scoreSql);
-    }
-
-    private function connectToDb()
-    {
-        $user = "OfficeFootball";
-        $password = "footballintheOffice555#";
-        $database = "OfficeFootball";
-        $host = "OfficeFootball.db.12033577.hostedresource.com";
-
-        $sql = new mysqli($host, $user, $password, $database);
-        return $sql;
-    }
-
-    private function connectToDbLocal()
-    {
-        $user = "root";
-        $password = "football555";
-        $database = "OfficeFootball";
-        $host = "localhost";
-
-        $sql = new mysqli($host, $user, $password, $database);
-        return $sql;
-    }
-}
 
 class Person
 {

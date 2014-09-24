@@ -1,6 +1,8 @@
  <?php
  	include_once("utility.php");
+    include_once("db.php");
     include_once("header.php");
+
     
     $db = new DbHandler();
     $week = DbHandler::CURRENT_TIME_PERIOD;

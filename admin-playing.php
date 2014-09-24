@@ -1,5 +1,6 @@
 <?php
 include_once("utility.php");
+include_once("db.php");
 /**
  * Created by PhpStorm.
  * User: Steve
@@ -38,10 +39,8 @@ if (isset($W)) $w = determineTeamId($W, $db);
 
 $db->insertPlaying($a, $b, $w, $week);
 
-if (isset($A) && isset($B))
-    exit("$A($a)  $B($b)  $W($w)");
-else
-    exit("NONE, $W($w)");
-//header('Location: '.'html/admin-playing.html');
-//die();
+if (!isset($A)) { $A = 'NONE'; $a = 'NA'; }
+if (!isset($B)) { $B = 'NONE'; $b = 'NA'; }
+if (!isset($W)) { $W = 'NONE'; $w = 'NA'; }
 
+exit("Week $week: $A($a),  $B($b),  $W($w)");
