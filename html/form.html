@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,700">
 
 <link href='../css/3103427734-formview_st_ltr.css' type='text/css' rel='stylesheet'>
+<link href='../css/m-form.css' type='text/css' rel='stylesheet'>
 <style type="text/css">
 body {
     background-color: rgb(231, 238, 247);
@@ -365,7 +366,7 @@ input[type='text'], input:not([type]), textarea {
             </div>
         </div>
         <div class="ss-form">
-            <form action="../submit.php" method="POST" id="ss-form" target="_self" onsubmit="">
+            <form id="ss-form">
                 <ol role="list" class="ss-question-list" style="padding-left: 0">
                     <div class="ss-form-question errorbox-good" role="listitem">
                         <div dir="ltr" class="ss-item ss-item-required ss-text">
@@ -374,7 +375,7 @@ input[type='text'], input:not([type]), textarea {
                                     <div class="ss-q-title">Name
                                         <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
                                         <span class="ss-required-asterisk">*</span></div>
-                                    <div class="ss-q-help ss-secondary-text" dir="ltr">First Last</div>
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr">User Name</div>
                                 </label>
                                 <input type="text" name="user_name" value="" class="ss-q-short"
                                        id="entry_1074944874" dir="auto" aria-label="Name First Last "
@@ -389,16 +390,15 @@ input[type='text'], input:not([type]), textarea {
                         <div dir="ltr" class="ss-item ss-item-required ss-text">
                             <div class="ss-form-entry">
                                 <label class="ss-q-item-label" for="entry_746413390">
-                                    <div class="ss-q-title">Keyword
+                                    <div class="ss-q-title">Password
                                         <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
                                         <span class="ss-required-asterisk">*</span></div>
-                                    <div class="ss-q-help ss-secondary-text" dir="ltr">Use the most recent keyword
-                                        given
+                                    <div class="ss-q-help ss-secondary-text" dir="ltr">Password
                                     </div>
                                 </label>
-                                <input type="text" name="user_password" value="" class="ss-q-short"
+                                <input type="password" name="user_password" value="" class="ss-q-short"
                                        id="entry_746413390" dir="auto"
-                                       aria-label="Keyword Use the most recent keyword given " aria-required="true"
+                                       aria-label="Password" aria-required="true"
                                        required="" title="">
 
                                 <div class="error-message" id="1399007605_errorMessage"></div>
@@ -692,8 +692,7 @@ input[type='text'], input:not([type]), textarea {
                                     <input type="submit" name="submit" value="Submit" id="ss-submit"
                                            class="jfk-button jfk-button-action ">
 
-                                    <div class="ss-password-warning ss-secondary-text">Please don't use a password you
-                                        use on any other site.
+                                    <div class="ss-password-warning ss-secondary-text">
                                     </div>
                                 </td>
                             </tr>
@@ -707,9 +706,12 @@ input[type='text'], input:not([type]), textarea {
 
         <div id="docs-aria-speakable" class="docs-a11y-ariascreenreader-speakable docs-offscreen" aria-live="assertive"
              role="region" aria-atomic></div>
+        <div id="div-error">
+            <p>HELLO HELLO stupid</p>
+        </div>
     </div>
-
-
+    <script src="../js/jquery-2.1.1.js"></script>
+    <script type='text/javascript' src='../js/submit.js'></script>
     <script type='text/javascript' src='../js/2220651830-formviewer_prd.js'></script>
     <script type="text/javascript">H5F.setup(document.getElementById('ss-form'));
     _initFormViewer(

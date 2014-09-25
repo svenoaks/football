@@ -1,7 +1,7 @@
 <?php
 class DbHandler
 {
-    const CURRENT_TIME_PERIOD = 2;
+    const CURRENT_TIME_PERIOD = 3;
 
     private $db;
 
