@@ -162,6 +162,7 @@ class Person
 
     public function getPickAt($i)
     {
+        if (!array_key_exists($i, $this->picks)) return NULL;
         return $this->picks[$i];
     }
 

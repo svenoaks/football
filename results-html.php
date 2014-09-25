@@ -27,6 +27,8 @@
                 $i++) {
                 $pickA = $personA->getPickAt($i);
                 $pickB = $personB->getPickAt($i);
+                if (!isset($pickA)) $pickA = new Pick("No Pick", false, false);
+                if (!isset($pickB)) $pickB = new Pick("No Pick", false, false);
                 ?>
                 <tr>
                     <td class="result-td"><?= $pickA->getTeamName(); ?></td>

@@ -1,7 +1,7 @@
 <?php
 class DbHandler
 {
-    const CURRENT_TIME_PERIOD = 3;
+    const CURRENT_TIME_PERIOD = 4;
 
     private $db;
 
@@ -21,8 +21,9 @@ class DbHandler
 
     public function __destruct()
     {
-
+        $this->checkPersonStmt->close();
         $this->insertPickStmt->close();
+        $this->insertPlayingStmt->close();
         $this->db->close();
     }
 
@@ -30,7 +31,8 @@ class DbHandler
     {
         $this->insertPlayingStmt->bind_param('iiii', $week, $A, $B, $W);
         $success =  $this->insertPlayingStmt->execute();
-        $this->insertPlayingStmt->close();
+        $this->insertPlayingStmt->reset();
+
         return $success;
     }
     public function queryForUserId($name, $pass)
@@ -39,7 +41,7 @@ class DbHandler
         $this->checkPersonStmt->execute();
         $this->checkPersonStmt->bind_result($userId);
         $this->checkPersonStmt->fetch();
-        $this->checkPersonStmt->close();
+        $this->checkPersonStmt->reset();
 
         return $userId;
     }
@@ -48,6 +50,7 @@ class DbHandler
         //echo $userId . ' '  .  $timePeriodId. ' ' . $teamId. "<br>";
         $this->insertPickStmt->bind_param('iii', $userId, $timePeriodId, $teamId);
         $success =  $this->insertPickStmt->execute();
+        $this->insertPickStmt->reset();
 
         return $success;
     }
