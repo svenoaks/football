@@ -13,7 +13,7 @@ $userPass = htmlspecialchars(each($_POST)['value']);
 
 $userId = $db->queryForUserId($userName, $userPass);
 
-if (!isset($userId)) exit ("Invalid User Name and Password Combination");
+if (!isset($userId) || $userId == "") exit ("Invalid User Name and Password Combination");
 
 while (list($key, $value) = each($_POST))
 {
