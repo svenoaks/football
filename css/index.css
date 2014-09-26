@@ -55,12 +55,12 @@
         width:100px;
     }
     .m-body .result-table .result-wl-th {
-        width: 30px;
-        max-width:30px;
+        width: 35px;
+        max-width:35px;
     }
     .m-body .result-table .result-wl-td {
-        width: 30px;
-        max-width:30px;
+        width: 35px;
+        max-width:35px;
     }
 }
 .result-table {
@@ -88,7 +88,7 @@
 
 }
 
-.result-td-green {
+.result-td-green, #div-success {
     background-color:rgba(185,232,124,0.3);
 }
 
@@ -98,4 +98,8 @@
 
 .result-td-yellow {
     background-color:rgba(237,237,97,0.5);
+}
+#div-success {
+    text-align:center;
+    display:none;
 }

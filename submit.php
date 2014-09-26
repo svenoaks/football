@@ -13,11 +13,21 @@ $userPass = htmlspecialchars(each($_POST)['value']);
 
 $userId = $db->queryForUserId($userName, $userPass);
 
-if (!isset($userId) || $userId == "") exit ("Invalid User Name and Password Combination");
+if (!isset($userId) || $userId == "") exit ("Invalid User Name and Password Combination.");
+if (alreadyPicked($userId, $week, $db)) exit ("You already picked this week.");
+
+$picks = array();
 
 while (list($key, $value) = each($_POST))
 {
     $teamId = determineTeamId(htmlspecialchars($value), $db);
+    if ($week > 1 && didPick($teamId, $userId, $week-1, $db))
+        exit ("You picked $value last week, choose again.");
+    array_push($picks, $teamId);
+}
+
+foreach($picks As $teamId)
+{
     if (isset($teamId)) $db->insertPick($userId, $week, $teamId);
 }
 

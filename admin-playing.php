@@ -33,9 +33,9 @@ while (list($key, $val) = each($_POST)) {
 
 }
 
-if (isset($A)) $a = determineTeamId($A, $db);
-if (isset($B)) $b = determineTeamId($B, $db);
-if (isset($W)) $w = determineTeamId($W, $db);
+if (isset($A)) $a = determineTeamId(htmlspecialchars($A), $db);
+if (isset($B)) $b = determineTeamId(htmlspecialchars($B), $db);
+if (isset($W)) $w = determineTeamId(htmlspecialchars($W), $db);
 
 $db->insertPlaying($a, $b, $w, $week);
 

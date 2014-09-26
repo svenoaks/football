@@ -1,4 +1,21 @@
 <?php
+function alreadyPicked($userId, $week, $db)
+{
+    $pickRs = $db->queryForpick($userId, $week);
+    $pickRs->data_seek(0);
+    return $pickRs->num_rows;
+}
+function didPick($teamId, $userId, $week, $db)
+{
+    $pickRs = $db->queryForpick($userId, $week);
+    $pickRs->data_seek(0);
+    while($row = $pickRs->fetch_assoc())
+    {
+        if ($row['TeamId'] == $teamId)
+            return true;
+    }
+    return false;
+}
 function retrieveAliasFor($person, $db)
 {
     $aliasRs = $db->queryForAlias($person);

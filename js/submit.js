@@ -2,10 +2,11 @@
  * Created by Steve on 9/24/14.
  */
 $(document).ready(function() {
-    $("#div-error").hide();
+
     var request;
 // bind to the submit event of our form
     $("#ss-form").submit(function(event){
+        $("#div-error").hide();
         // abort any pending request
         if (request) {
             request.abort();
@@ -32,7 +33,7 @@ $(document).ready(function() {
         // callback handler that will be called on success
         request.done(function (response, textStatus, jqXHR){
             if (response == 'success') {
-                window.location.replace("../news.php");
+                window.location.replace("../news.php?picked=true");
             }
             else {
                 $("#div-error p").html(response).parent().show(400);

@@ -1,7 +1,7 @@
 <?php
 class DbHandler
 {
-    const CURRENT_TIME_PERIOD = 4;
+    const CURRENT_TIME_PERIOD = 5;
 
     private $db;
 
@@ -53,6 +53,16 @@ class DbHandler
         $this->insertPickStmt->reset();
 
         return $success;
+    }
+    public function queryForPick($userId, $week)
+    {
+        $pickSql = <<<TAG
+Select TeamId
+From Pick
+Where UserId = $userId And
+TimePeriodId = $week
+TAG;
+        return $this->db->query($pickSql);
     }
     public function queryForTeamId($name)
     {
