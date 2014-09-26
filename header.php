@@ -59,7 +59,7 @@
                     </li>
                 </ul>
                 <form class="navbar-form navbar-right navbar-collapse collapse" action="html/form.html">
-                         <button class="navbar-right btn btn-primary" role="button">Weekly Submission Form &raquo;</button>
+                         <button class="navbar-right btn btn-default" role="button">Weekly Submission Form &raquo;</button>
                 </form>
             </div>
             
