@@ -4,7 +4,7 @@
 $(document).ready(function() {
 
     var request;
-    $("#ss-form").submit(function(event){
+    $("#form-submit").submit(function(event){
         $("#div-error").hide();
         if (request) {
             request.abort();

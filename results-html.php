@@ -7,18 +7,24 @@
         <div class="col-md-6">
             <?php $nameA = $personA->getAlias();
             $nameB = $personB->getAlias();
-            $scoreA = '(' . $scores[$nameA] . '-' . ($week - $scores[$nameA]) . ')';
-            $scoreB = '(' . $scores[$nameB] . '-' . ($week - $scores[$nameB]) . ')';
+            $scoreA = $scores[$nameA] . '-' . ($week - $scores[$nameA]);
+            $scoreB = $scores[$nameB] . '-' . ($week - $scores[$nameB]);
             ?>
 
-            <h4 class="text-center"><?= $nameA . ' ' . $scoreA ; ?> vs. <?= $nameB . ' ' . $scoreB ?></h4>
+
             <table class="table table-bordered result-table">
                 <thead>
                 <tr>
-                    <th class="result-th">Team</th>
-                    <th class="result-wl-th text-center">W/L</th>
-                    <th class="result-wl-th text-center">W/L</th>
-                    <th class="result-th">Team</th>
+                    <th class="result-th active"><?=$nameA?></th>
+                    <th class="result-wl-th text-center active"><?=$scoreA?></th>
+                    <th class="result-wl-th text-center active"><?=$scoreB?></th>
+                    <th class="result-th active"><?=$nameB?></th>
+                </tr>
+                <tr>
+                    <th class="result-th ">Team</th>
+                    <th class="result-wl-th text-center ">W/L</th>
+                    <th class="result-wl-th text-center ">W/L</th>
+                    <th class="result-th ">Team</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,16 +33,16 @@
                 $i++) {
                 $pickA = $personA->getPickAt($i);
                 $pickB = $personB->getPickAt($i);
-                if (!isset($pickA)) $pickA = new Pick("No Pick", false, false);
-                if (!isset($pickB)) $pickB = new Pick("No Pick", false, false);
+                if (!isset($pickA) || $pickA->isBadPick()) $pickA = new Pick("No Pick", false, false, false);
+                if (!isset($pickB) || $pickB->isBadPick()) $pickB = new Pick("No Pick", false, false, false);
                 ?>
                 <tr>
                     <td class="result-td"><?= $pickA->getTeamName(); ?></td>
-                    <td class="result-wl-td text-center<?= $pickA->wasConditionalWin() ? ' result-td-yellow' :
-                        ($pickA->didWin() ? ' result-td-green' : ' result-td-red') ?>">
+                    <td class="result-wl-td text-center<?= $pickA->wasConditionalWin() ? ' warning' :
+                        ($pickA->didWin() ? ' success' : ' danger') ?>">
                         <?= $pickA->didWin() ? 'W' : 'L' ?></td>
-                    <td class="result-wl-td text-center<?= $pickB->wasConditionalWin() ? ' result-td-yellow' :
-                        ($pickB->didWin() ? ' result-td-green' : ' result-td-red') ?>">
+                    <td class="result-wl-td text-center<?= $pickB->wasConditionalWin() ? ' warning' :
+                        ($pickB->didWin() ? ' success' : ' danger') ?>">
                         <?= $pickB->didWin() ? 'W' : 'L' ?></td>
                     <td class="result-td result-td-right"><?= $pickB->getTeamName(); ?></td>
                     <?php } ?>
@@ -51,11 +57,11 @@
                     ?>
                     <th class="result-th">Total</th>
                     <th class="result-wl-th text-center<?php if ($personA->getWin($week))
-                        echo ' result-td-green';
-                    else echo ' result-td-red';?>"><?= $personA->getScore($week); ?></th>
+                        echo ' success';
+                    else echo ' danger';?>"><?= $personA->getScore($week); ?></th>
                     <th class="result-wl-th text-center<?php if ($personB->getWin($week))
-                        echo ' result-td-green';
-                    else echo ' result-td-red';?>"><?= $personB->getScore($week); ?></th>
+                        echo ' success';
+                    else echo ' danger';?>"><?= $personB->getScore($week); ?></th>
                     <th class="result-th"><?php if ($tie) echo 'Tiebreaker'; ?></th>
                 </tr>
                 </tfoot>

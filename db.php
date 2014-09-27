@@ -114,17 +114,16 @@ TAG;
     public function queryForPicks($person, $week)
     {
         $id = $person->getId();
-        $byDivisionSql = ' ORDER BY DivisionId';
         $picksByDivisionSql = <<<TAG
-SELECT Person.UserId, Person.Alias, TeamId, Picks.Name, DivisionId
+SELECT Person.UserId, Person.Alias, TeamId, Picks.Name, DivisionId, BadPick
 FROM (
-SELECT UserId, Team.TeamId, Team.Name, DivisionId
+SELECT UserId, Team.TeamId, Team.Name, DivisionId, BadPick
 FROM Pick, Team
 WHERE Pick.TeamId = Team.TeamId
 AND TimePeriodId = $week
 ) AS Picks, Person
 WHERE Picks.UserId = Person.UserId
-AND Person.UserId = $id $byDivisionSql
+AND Person.UserId = $id ORDER BY DivisionId
 TAG;
 
 
@@ -154,6 +153,7 @@ FROM Playing, Pick
 WHERE Playing.WinningTeamId = Pick.TeamId
 AND Playing.TimePeriodId = $week
 AND Pick.TimePeriodId = $week
+And Pick.BadPick = 0
 ) AS UserPickedWinner, Person, Team
 WHERE Person.UserId = UserPickedWinner.UserId
 AND Team.TeamId = UserPickedWinner.WinningTeamId

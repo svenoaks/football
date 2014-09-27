@@ -43,10 +43,12 @@
     }
     .m-body .result-table .result-wl-th {
         width: 40px;
+        max-width:40px;
 
     }
     .m-body .result-table .result-wl-td {
         width: 40px;
+        max-width:40px;
 
     }
 }
@@ -55,11 +57,15 @@
         width:100px;
     }
     .m-body .result-table .result-wl-th {
+        width:35px;
+        max-width:35px;
         padding-left:3px;
         padding-right:3px;
 
     }
     .m-body .result-table .result-wl-td {
+        width:35px;
+        max-width:35px;
         padding-left:3px;
         padding-right:3px;
 
@@ -104,4 +110,14 @@
 #div-success {
     text-align:center;
     display:none;
+}
+.result-table {
+    margin-top:20px;
+
+}
+
+.m-modal-header {
+    border-bottom: 1px solid #e5e5e5;
+    padding-left:0;
+    margin-bottom:15px;
 }

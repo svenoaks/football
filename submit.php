@@ -26,6 +26,10 @@ while (list($key, $value) = each($_POST))
     array_push($picks, $teamId);
 }
 
+$NUM_TO_PICK = 7;
+if (count($picks) != NUM_TO_PICK)
+        exit ("You must make a selection for all conferences.");
+
 foreach($picks As $teamId)
 {
     if (isset($teamId)) $db->insertPick($userId, $week, $teamId);

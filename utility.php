@@ -82,11 +82,12 @@ function getMatches($week)
 
             $picksRs = $db->queryForPicks($person, $week);
             $picksRs->data_seek(0);
-            while ($row = $picksRs->fetch_assoc()) {
-                $winRow = $fetchWin($row['TeamId'], $week, $db);
-                $won = $winRow['Total'];
+            while ($pickRow = $picksRs->fetch_assoc()) {
+                $winRow = $fetchWin($pickRow['TeamId'], $week, $db);
                 $conditionalWin = $winRow['ConditionalWin'];
-                $pick = new Pick($row['Name'], $won, $conditionalWin);
+                $badPick = $pickRow['BadPick'];
+                $won = $winRow['Total'] && !$badPick;
+                $pick = new Pick($pickRow['Name'], $won, $conditionalWin, $badPick);
                 $person->pushPick($pick);
             }
         };
@@ -226,12 +227,14 @@ class Pick
     private $teamName;
     private $won;
     private $conditionalWin;
+    private $badPick;
 
-    public function __construct($teamName, $won, $conditionalWin)
+    public function __construct($teamName, $won, $conditionalWin, $badPick)
     {
         $this->teamName = $teamName;
         $this->won = $won;
         $this->conditionalWin = $conditionalWin;
+        $this->badPick = $badPick;
     }
 
     public function getTeamName()
@@ -247,6 +250,9 @@ class Pick
     public function wasConditionalWin()
     {
         return $this->conditionalWin;
+    }
+    public function isBadPick() {
+        return $this->badPick;
     }
 }
 
