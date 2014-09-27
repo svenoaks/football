@@ -47,5 +47,29 @@ $(document).ready(function() {
     $('#formModal').on('hidden.bs.modal', function (e) {
         if (formSuccess) $('#div-success').slideDown(400);
         formSuccess = false;
-    })
+    });
+
+
+    (function() {
+        var beforePrint = function() {
+            $('.col-md-6').removeClass('col-md-6').addClass('col-xs-6');
+        };
+        var afterPrint = function() {
+            $('.col-xs-6').removeClass('col-xs-6').addClass('col-md-6');
+        };
+
+        if (window.matchMedia) {
+            var mediaQueryList = window.matchMedia('print');
+            mediaQueryList.addListener(function(mql) {
+                if (mql.matches) {
+                    beforePrint();
+                } else {
+                    afterPrint();
+                }
+            });
+        }
+
+        window.onbeforeprint = beforePrint;
+        window.onafterprint = afterPrint;
+    })();
 });

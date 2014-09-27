@@ -5,7 +5,7 @@
         $personA = $match['personA'];
         $personB = $match['personB'];
         ?>
-        <div class="col-xs-6">
+        <div class="col-md-6">
             <?php
             $nameA = $personA->getAlias();
             $nameB = $personB->getAlias();
