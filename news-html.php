@@ -1,11 +1,10 @@
  <div class="container m-container">
         <div class="jumbotron m-jumbotron">
-            <h1><span class="span-blue">Office</span><span class="span-orange">Football</span></h1>
+            <h2><span class="span-blue">Office</span><span class="span-orange">CFC</span></h2>
 
             <p class="lead">Week 1 is completed! It's still a little too soon to start official power rankings, but a
                 hierarchy is beginning to take shape. Pay attention as this week marks the beginning of serious
                 conference play in the NCAA.</p>
-           
         </div>
 
     </div>
@@ -14,13 +13,14 @@
 
         <div class="row">
             <div class="col-md-4">
-                <h2 class="text-center">Leaderboard</h2>
+                <h3 class="text-center">Leaderboard</h3>
 
                  <table class="table">
 					<thead>
                     <tr>
                         <th>Player</th>
                         <th>W/L</th>
+                        <th class="text-center">Total Points</th>
                     </tr>	
 					</thead>
 					<tbody>
@@ -31,7 +31,8 @@
                     ?>
                         <tr>
                         	<td><?=$i . '. &nbsp;&nbsp; ' . $cur['key']?></td>
-							<td><?=($cur['value'] . ' - ' . ($week - 1 - $cur['value']))?></td>
+							<td><?=($cur['value']['score'] . ' - ' . ($week - 1 - $cur['value']['score']))?></td>
+                            <td class="text-center"><?=$cur['value']['points']?></td>
                         </tr>
                      <?php } ?>
 					</tbody>
@@ -40,7 +41,7 @@
 
             </div>
              <div class="col-md-4">
-                <h2 class="text-center">Current Schedule</h2>
+                <h3 class="text-center">Current Schedule</h3>
                  <table class="table">
 					<thead>
                     <tr>
@@ -64,7 +65,7 @@
 				 </table>
             </div>
             <div class="col-md-4">
-                <h2 class="text-center">Last Week's Results</h2>
+                <h3 class="text-center">Last Week's Results</h3>
                 <table class="table">
                     <thead>
                     <tr>
@@ -77,7 +78,7 @@
                     <?php foreach ($lastMatchesArray as $match) { 
 							  $personA = $match['personA'];
 							  $personB = $match['personB'];
-							  if ($personA->getWin($week - 1)) 
+							  if ($personA->getWin($week - 1))
 							  { $winner = $personA; $loser = $personB; }
 							  else { $winner = $personB; $loser = $personA; }
                     ?>

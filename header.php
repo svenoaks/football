@@ -260,12 +260,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand"><span class="">NCAA Week <?= DbHandler::CURRENT_TIME_PERIOD ?></span></a>
+            <a class="navbar-brand"><span class="">Week <?= DbHandler::CURRENT_TIME_PERIOD ?></span></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="<?php echoActiveClassIfRequestMatches("news") ?>"><a href="news.php">News</a></li>
-                <li class="<?php echoActiveClassIfRequestMatches("schedule") ?>"><a href="schedule.php">Schedule</a>
+                <li class="<?php echoActiveClassIfRequestMatches("schedule") ?>"><a href="schedule.php">Schedule</a></li>
+                <li class="<?php echoActiveClassIfRequestMatches("rankings") ?>"><a href="rankings.php">Rankings</a>
+                <li class="<?php echoActiveClassIfRequestMatches("scorecard") ?>"><a href="scorecard.php">Scorecard</a>
                 </li>
                 <li class="<?php echoActiveClassIfRequestMatches("results") ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span
@@ -276,6 +278,7 @@
                         <?php } ?>
                     </ul>
                 </li>
+
             </ul>
             <div class="navbar-form navbar-right navbar-collapse collapse">
                 <button class="navbar-right btn btn-default" role="button" data-toggle="modal" data-target="#formModal">

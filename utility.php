@@ -39,12 +39,15 @@ function determineTotalScores($allMatches, $limit)
             $personA = $match['personA'];
             $personB = $match['personB'];
             if (!array_key_exists($personA->getAlias(), $people))
-                $people[$personA->getAlias()] = 0;
+                $people[$personA->getAlias()] = array('score' => 0, 'points' => 0);
             if (!array_key_exists($personB->getAlias(), $people))
-                $people[$personB->getAlias()] = 0;
+                $people[$personB->getAlias()] = array('score' => 0, 'points' => 0);
 
-            if ($personA->getWin($i)) $people[$personA->getAlias()]++;
-            if ($personB->getWin($i)) $people[$personB->getAlias()]++;
+            if ($personA->getWin($i)) $people[$personA->getAlias()]['score']++;
+            if ($personB->getWin($i)) $people[$personB->getAlias()]['score']++;
+
+            $people[$personA->getAlias()]['points'] += $personA->getTotalPoints();
+            $people[$personB->getAlias()]['points'] += $personB->getTotalPoints();
         }
     }
     return $people;
@@ -87,6 +90,7 @@ function getMatches($week)
                 $conditionalWin = $winRow['ConditionalWin'];
                 $badPick = $pickRow['BadPick'];
                 $won = $winRow['Total'] && !$badPick;
+                if ($won) $person->incrementPoints();
                 $pick = new Pick($pickRow['Name'], $won, $conditionalWin, $badPick);
                 $person->pushPick($pick);
             }
@@ -152,6 +156,7 @@ class Person
     private $scores = array();
     private $tieBreaker = array();
     private $wins = array();
+    private $totalPoints;
 
     public function __construct($id)
     {
@@ -162,7 +167,14 @@ class Person
     {
         return $this->id;
     }
-
+    public function getTotalPoints()
+    {
+        return $this->totalPoints;
+    }
+    public function incrementPoints()
+    {
+        $this->totalPoints++;
+    }
     public function pushPick($pick)
     {
         array_push($this->picks, $pick);

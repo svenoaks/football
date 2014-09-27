@@ -11,11 +11,19 @@
     margin-top:0;
 }
 
+h1, h2, h3, h4, h4, h5, h6, th {
+    color:#555;
+}
+.m-jumbotron h2 {
+    font-size:40px;
+}
+
 .m-body {
 
 }
 .m-body .m-jumbotron {
-    border: 1px solid #2d6ca2;
+    border: 1px solid #CCC;
+    background-color:#f5f5f5;
 }
 
 .m-jumbotron {
@@ -115,5 +123,9 @@
 .result-table {
     margin-top:20px;
 
+}
+
+.table-ranking {
+    margin-top:20px;
 }
 

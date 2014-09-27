@@ -1,17 +1,17 @@
 <div class="container m-container">
-    <h3 class="text-center header-result">Week <?= $week ?> Results</h3>
+    <h3 class="text-center header-result">
+        <?php if ($scorecard) echo "Current Week Scorecard"; else echo "Week $week Results";?></h3>
     <?php foreach ($currentMatchesArray as $match) {
         $personA = $match['personA'];
         $personB = $match['personB'];
         ?>
         <div class="col-md-6">
-            <?php $nameA = $personA->getAlias();
+            <?php
+            $nameA = $personA->getAlias();
             $nameB = $personB->getAlias();
-            $scoreA = $scores[$nameA] . '-' . ($week - $scores[$nameA]);
-            $scoreB = $scores[$nameB] . '-' . ($week - $scores[$nameB]);
+            $scoreA = $scores[$nameA]['score'] . '-' . (($scorecard ? $week - 1 : $week) - $scores[$nameA]['score']);
+            $scoreB = $scores[$nameB]['score'] . '-' . (($scorecard ? $week - 1 : $week) - $scores[$nameB]['score']);
             ?>
-
-
             <table class="table table-bordered result-table">
                 <thead>
                 <tr>
@@ -28,13 +28,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php for ($i = 0;
-                $i < max($personA->getPickCount(), $personB->getPickCount());
-                $i++) {
-                $pickA = $personA->getPickAt($i);
-                $pickB = $personB->getPickAt($i);
-                if (!isset($pickA) || $pickA->isBadPick()) $pickA = new Pick("No Pick", false, false, false);
-                if (!isset($pickB) || $pickB->isBadPick()) $pickB = new Pick("No Pick", false, false, false);
+                <?php
+                for ($i = 0; $i < max($personA->getPickCount(), $personB->getPickCount()); $i++) {
+                    $pickA = $personA->getPickAt($i);
+                    $pickB = $personB->getPickAt($i);
+                    if (!isset($pickA) || $pickA->isBadPick()) $pickA = new Pick("No Pick", false, false, false);
+                    if (!isset($pickB) || $pickB->isBadPick()) $pickB = new Pick("No Pick", false, false, false);
                 ?>
                 <tr>
                     <td class="result-td"><?= $pickA->getTeamName(); ?></td>
