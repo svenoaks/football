@@ -5,6 +5,7 @@ $(document).ready(function() {
     $('#div-success').hide();
 
     var request;
+    var formSuccess = false;
     $("#form-submit").submit(function(event){
         $("#div-error").hide();
         if (request) {
@@ -24,6 +25,7 @@ $(document).ready(function() {
 
         request.done(function (response, textStatus, jqXHR){
             if (response == 'success') {
+                formSuccess = true;
                 $("#formModal").modal('hide');
             }
             else {
@@ -43,6 +45,7 @@ $(document).ready(function() {
         event.preventDefault();
     });
     $('#formModal').on('hidden.bs.modal', function (e) {
-        $('#div-success').show(400);
+        if (formSuccess) $('#div-success').slideDown(400);
+        formSuccess = false;
     })
 });

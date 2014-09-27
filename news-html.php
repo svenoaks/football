@@ -1,6 +1,6 @@
  <div class="container m-container">
         <div class="jumbotron m-jumbotron">
-            <h1><span class="span-blue">office</span><span class="span-orange">Football</span></h1>
+            <h1><span class="span-blue">Office</span><span class="span-orange">Football</span></h1>
 
             <p class="lead">Week 1 is completed! It's still a little too soon to start official power rankings, but a
                 hierarchy is beginning to take shape. Pay attention as this week marks the beginning of serious

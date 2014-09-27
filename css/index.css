@@ -17,8 +17,12 @@
 .m-body .m-jumbotron {
     border: 1px solid #2d6ca2;
 }
-.m-container {
 
+.m-jumbotron {
+    margin-top:20px;
+}
+.m-container {
+    padding-top:15px;
 }
 
 .span-orange {
