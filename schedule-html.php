@@ -4,7 +4,7 @@
 	     foreach ($allMatchesArray as $currentMatchesArray) {
      ?>
 	<div class="col-md-4">
-                <h2 class="text-center">Week <?=$count;?></h2>
+                <h3 class="text-center">Week <?=$count;?></h3>
                  <table class="table">
     				<thead>
                     <tr>

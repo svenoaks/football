@@ -129,3 +129,34 @@ h1, h2, h3, h4, h4, h5, h6, th {
     margin-top:20px;
 }
 
+@media print {
+    * { margin: 0 !important; padding: 0 !important; }
+    h2, h3 {margin-bottom: 30px !important;}
+    .result-table { margin-top:20px !important; margin-left:0 !important; margin-right:0 !important; font-size:12px !important; width:50% !important;}
+    .result-th, .result-td {
+        padding:3px !important;
+        width:110px !important;
+    }
+    .m-body .result-table .result-wl-th {
+        padding:3px !important;
+        width:35px !important;
+        max-width:35px !important;
+
+
+    }
+    .m-body .result-table .result-wl-td {
+        padding:3px !important;
+        width:35px !important;
+        max-width:35px !important;
+
+
+    }
+    html, body {
+        /*changing width to 100% causes huge overflow and wrap*/
+        
+        overflow: hidden;
+        background: #FFF;
+        font-size: 9.5pt;
+    }
+}
+
