@@ -131,8 +131,9 @@ h1, h2, h3, h4, h4, h5, h6, th {
 
 @media print {
     * { margin: 0 !important; padding: 0 !important; }
-    h2, h3 {margin-bottom: 30px !important;}
-    .result-table { margin-top:20px !important; margin-left:0 !important; margin-right:0 !important; font-size:12px !important; width:50% !important;}
+    h2, h3 {margin-bottom: 20px !important; margin-top:10px !important;}
+    .col-xs-6 { width:50% !important; padding:10px !important;}
+    .result-table { margin-left:0 !important; margin-right:0 !important; font-size:12px !important; width:100% !important;}
     .result-th, .result-td {
         padding:3px !important;
         width:110px !important;
@@ -151,9 +152,14 @@ h1, h2, h3, h4, h4, h5, h6, th {
 
 
     }
+    .m-container {
+        width:100%;
+        margin-right:auto !important;
+        margin-left:auto !important;
+    }
     html, body {
         /*changing width to 100% causes huge overflow and wrap*/
-        
+
         overflow: hidden;
         background: #FFF;
         font-size: 9.5pt;
