@@ -5,7 +5,7 @@
 
     
     $db = new DbHandler();
-    $week = DbHandler::CURRENT_TIME_PERIOD;
+    $week = CommonVariables::$currentTimePeriod;
 
     $allMatches = getAllMatches($week);
     $lastMatchesArray = $allMatches[$week -1];

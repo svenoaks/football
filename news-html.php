@@ -1,8 +1,7 @@
  <div class="container m-container">
         <div class="jumbotron m-jumbotron">
             <h2><span class="span-blue">Office</span><span class="span-orange">CFC</span></h2>
-
-            <p class="lead">Week 1 is completed! It's still a little too soon to start official power rankings, but a
+            <p class="">Week 1 is completed! It's still a little too soon to start official power rankings, but a
                 hierarchy is beginning to take shape. Pay attention as this week marks the beginning of serious
                 conference play in the NCAA.</p>
         </div>
@@ -11,8 +10,8 @@
     <!-- /container -->
     <div class="container">
 
-        <div class="row">
-            <div class="col-md-4">
+        <div class="m-show row">
+            <div class=" col-md-4">
                 <h3 class="text-center">Leaderboard</h3>
 
                  <table class="table">
@@ -40,7 +39,7 @@
 
 
             </div>
-             <div class="col-md-4">
+             <div class=" col-md-4">
                 <h3 class="text-center">Current Schedule</h3>
                  <table class="table">
 					<thead>
@@ -64,7 +63,7 @@
 					</tbody>
 				 </table>
             </div>
-            <div class="col-md-4">
+            <div class=" col-md-4">
                 <h3 class="text-center">Last Week's Results</h3>
                 <table class="table">
                     <thead>
@@ -90,6 +89,16 @@
                     <?php } ?>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="m-row row">
+            <div class=" col-md-6">
+                <h5>Random Facts</h5>
+                <ph>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</ph>
+            </div>
+            <div class=" col-md-6">
+                <h5>Fun Stats</h5>
+                <ph>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</ph>
             </div>
         </div>
     </div>

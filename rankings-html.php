@@ -1,8 +1,8 @@
-<div class="container">
+<div class="m-fade m-container container">
+    <h3 class="text-center header-page">Complete Rankings</h3>
 
-    <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center">Complete Rankings</h3>
+
 
             <table class="table-ranking table">
                 <thead>
@@ -25,5 +25,5 @@
                 <?php } ?>
                 </tbody>
             </table>
-     </div>
-</div>
+
+</div>s

@@ -1,4 +1,9 @@
 <?php
+class CommonVariables {
+    static $currentTimePeriod = 5;
+    static $formEnabled = true;
+    static $scorecardEnabled= true;
+}
 function alreadyPicked($userId, $week, $db)
 {
     $pickRs = $db->queryForpick($userId, $week);

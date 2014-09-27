@@ -7,12 +7,20 @@
     -o-user-select: none;
     user-select: none;
 }
-.header-result {
+.header-page {
     margin-top:0;
 }
 
 h1, h2, h3, h4, h4, h5, h6, th {
     color:#555;
+}
+
+label {
+    color:#555;
+}
+
+.modal h3, h4 {
+    color:#333;
 }
 .m-jumbotron h2 {
     font-size:40px;
@@ -164,5 +172,15 @@ h1, h2, h3, h4, h4, h5, h6, th {
         background: #FFF;
         font-size: 9.5pt;
     }
+}
+
+.m-fade {
+    display: none;
+}
+.m-show {
+    display:none;
+}
+.m-row {
+    margin-top:20px;
 }
 

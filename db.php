@@ -1,8 +1,6 @@
 <?php
 class DbHandler
 {
-    const CURRENT_TIME_PERIOD = 5;
-
     private $db;
 
     private $insertPlayingStmt;

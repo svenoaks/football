@@ -261,7 +261,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand"><span class="">Week <?= DbHandler::CURRENT_TIME_PERIOD ?></span></a>
+            <a class="navbar-brand"><span class="">Week <?= CommonVariables::$currentTimePeriod ?></span></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -274,7 +274,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span
                             class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <?php for ($i = 1; $i <= DbHandler::CURRENT_TIME_PERIOD - 1; ++$i) { ?>
+                        <?php for ($i = 1; $i <= CommonVariables::$currentTimePeriod - 1; ++$i) { ?>
                             <li><a href="results.php?week=<?= $i; ?>">Week <?= $i; ?></a></li>
                         <?php } ?>
                     </ul>

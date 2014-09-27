@@ -1,4 +1,4 @@
-<div class="container m-container">
+<div class="m-fade container m-container">
 
 	<?php $count = 1; 
 	     foreach ($allMatchesArray as $currentMatchesArray) {

@@ -1,5 +1,5 @@
-<div class="container m-container">
-    <h3 class="text-center header-result">
+<div class="m-fade container m-container">
+    <h3 class="text-center header-page">
         <?php if ($scorecard) echo "Current Week Scorecard"; else echo "Week $week Results";?></h3>
     <?php foreach ($currentMatchesArray as $match) {
         $personA = $match['personA'];
@@ -57,10 +57,10 @@
                     <th class="result-th">Total</th>
                     <th class="result-wl-th text-center<?php if (!$scorecard) if ($personA->getWin($week))
                         echo ' success';
-                    else echo ' danger';?>"><?= $personA->getScore($week); ?></th>
+                    else echo ' danger';?>"><?php echo $personA->getScore($week); if ($personA->getWin($week) && $tie) echo '>';?></th>
                     <th class="result-wl-th text-center<?php if (!$scorecard) if ($personB->getWin($week))
                         echo ' success';
-                    else echo ' danger';?>"><?= $personB->getScore($week); ?></th>
+                    else echo ' danger';?>"><?php echo $personB->getScore($week); ; if ($personB->getWin($week) && $tie) echo '>'; ?></th>
                     <th class="result-th"><?php if ($tie) echo 'Tiebreaker'; ?></th>
                 </tr>
                 </tfoot>

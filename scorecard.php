@@ -11,7 +11,7 @@ include_once("header.php");
 
 $scorecard = true;
 
-$week = DbHandler::CURRENT_TIME_PERIOD;
+$week = CommonVariables::$currentTimePeriod;
 $allMatches = getAllMatches($week);
 $currentMatchesArray = $allMatches[$week];
 
