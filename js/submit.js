@@ -2,6 +2,7 @@
  * Created by Steve on 9/24/14.
  */
 $(document).ready(function() {
+    $('#div-success').hide();
 
     var request;
     $("#form-submit").submit(function(event){
@@ -16,14 +17,14 @@ $(document).ready(function() {
         $inputs.prop("disabled", true);
 
         request = $.ajax({
-            url: "../submit.php",
+            url: "submit.php",
             type: "post",
             data: serializedData
         });
 
         request.done(function (response, textStatus, jqXHR){
             if (response == 'success') {
-                window.location.replace("../news.php?picked=true");
+                $("#formModal").modal('hide');
             }
             else {
                 $("#div-error p").html(response).parent().show(400);
@@ -33,7 +34,7 @@ $(document).ready(function() {
         request.fail(function (jqXHR, textStatus, errorThrown){
             $("#div-error p").html("There was a problem submitting, please try again.").parent().show(400);
         });
-        
+
         request.always(function () {
 
             $inputs.prop("disabled", false);
@@ -41,4 +42,7 @@ $(document).ready(function() {
 
         event.preventDefault();
     });
+    $('#formModal').on('hidden.bs.modal', function (e) {
+        $('#div-success').show(400);
+    })
 });

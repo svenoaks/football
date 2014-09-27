@@ -6,5 +6,6 @@
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.js"></script>
+<script type='text/javascript' src='js/submit.js'></script>
 </body>
 </html>

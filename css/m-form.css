@@ -1,6 +1,26 @@
 #div-error {
-    background-color:rgba(232,124,124,0.5);
-    text-align:center;
+    background-color:#f2dede;
     color:#222;
     display:none;
+}
+.m-form {
+   padding:15px;
+}
+
+.m-modal-header {
+    border-bottom: 1px solid #e5e5e5;
+    padding-left:0;
+    margin-bottom:15px;
+}
+#div-success {
+    display:none;
+    margin-top:-20px;
+    text-align:center;
+
+
+}
+#div-success h5 {
+
+    padding-top:10px;
+    padding-bottom:10px;
 }

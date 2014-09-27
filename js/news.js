@@ -1,7 +1,7 @@
 /**
  * Created by Steve on 9/25/14.
  */
-function getParameterByName(name) {
+/*unction getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
@@ -11,4 +11,4 @@ function getParameterByName(name) {
 $(document).ready (function() {
     if (getParameterByName('picked'))
         $("#div-success").show();
-});
+});*/

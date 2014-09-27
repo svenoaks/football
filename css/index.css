@@ -18,7 +18,7 @@
     border: 1px solid #2d6ca2;
 }
 .m-container {
-    padding-top:90px;
+
 }
 
 .span-orange {
@@ -97,7 +97,7 @@
 }
 
 .result-td-green, #div-success {
-    background-color:rgba(185,232,124,0.3);
+    background-color:#dff0d8;
 }
 
 .result-td-red {
@@ -107,17 +107,9 @@
 .result-td-yellow {
     background-color:rgba(237,237,97,0.5);
 }
-#div-success {
-    text-align:center;
-    display:none;
-}
+
 .result-table {
     margin-top:20px;
 
 }
 
-.m-modal-header {
-    border-bottom: 1px solid #e5e5e5;
-    padding-left:0;
-    margin-bottom:15px;
-}
