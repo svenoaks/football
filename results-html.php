@@ -38,11 +38,11 @@
                 <tr>
                     <td class="result-td"><?= $pickA->getTeamName(); ?></td>
                     <td class="result-wl-td text-center<?= $pickA->wasConditionalWin() ? ' warning' :
-                        ($pickA->didWin() ? ' success' : ' danger') ?>">
-                        <?= $pickA->didWin() ? 'W' : 'L' ?></td>
+                        ($pickA->didWin() ? ' success' : (!$scorecard ? ' danger' : '')) ?>">
+                        <?= $pickA->didWin() ? 'W' : (!$scorecard ? 'L' : '') ?></td>
                     <td class="result-wl-td text-center<?= $pickB->wasConditionalWin() ? ' warning' :
-                        ($pickB->didWin() ? ' success' : ' danger') ?>">
-                        <?= $pickB->didWin() ? 'W' : 'L' ?></td>
+                        ($pickB->didWin() ? ' success' : (!$scorecard ? ' danger' : '')) ?>">
+                        <?= $pickB->didWin() ? 'W' : (!$scorecard ? 'L' : '') ?></td>
                     <td class="result-td result-td-right"><?= $pickB->getTeamName(); ?></td>
                     <?php } ?>
                 </tbody>
@@ -55,10 +55,10 @@
                     }
                     ?>
                     <th class="result-th">Total</th>
-                    <th class="result-wl-th text-center<?php if ($personA->getWin($week))
+                    <th class="result-wl-th text-center<?php if (!$scorecard) if ($personA->getWin($week))
                         echo ' success';
                     else echo ' danger';?>"><?= $personA->getScore($week); ?></th>
-                    <th class="result-wl-th text-center<?php if ($personB->getWin($week))
+                    <th class="result-wl-th text-center<?php if (!$scorecard) if ($personB->getWin($week))
                         echo ' success';
                     else echo ' danger';?>"><?= $personB->getScore($week); ?></th>
                     <th class="result-th"><?php if ($tie) echo 'Tiebreaker'; ?></th>
