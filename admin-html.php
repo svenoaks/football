@@ -23,7 +23,7 @@
         }
         textarea {
             width:500px;
-            text-height: 2em;
+            font-size:1.0em;
         }
         .m-form-div {
             margin-bottom:20px;
