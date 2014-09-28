@@ -35,7 +35,7 @@
 <body class="m-body">
 <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
-<form role="form" id="form-submit">
+<form role="form m-form" id="form-submit">
 <div class="modal-content">
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
@@ -43,9 +43,10 @@
     <h3 class="modal-title" id="myModalLabel">Weekly Submission Form</h3>
 </div>
 <div class="modal-body">
-<h4 class="modal-title">Enter your credentials:</h4>
+<div class="m-form-div">
+<h4 class="">Enter your credentials:</h4>
 
-<div class="m-form">
+
     <div class="form-group">
         <label for="user_name">Username</label>
         <input type="text" name="user_name" value="" class="form-control" id="user_name" placeholder="username"
@@ -59,9 +60,10 @@
     </div>
 </div>
 
-<h4 class="modal-title">Choose your teams:</h4>
+<div class="m-form-div">
+<h4 class="">Choose your teams:</h4>
 
-<div class="m-form">
+
     <div class="form-group">
 
         <label for="option_american">American Athletic Conference</label>
@@ -240,10 +242,11 @@
     </div>
 </div>
 <div id="div-error" class="text-center"><p>dd</p></div>
+
+</div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
     <button type="submit" class="btn btn-primary">Submit Form</button>
-</div>
 </div>
 
 </div>
@@ -251,7 +254,7 @@
 </form>
 </div>
 </div>
-<div class="navbar navbar-default navbar-static-top" role="navigation">
+<div class="m-navbar navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -290,6 +293,5 @@
 
         <!--/.nav-collapse -->
     </div>
-
 </div>
 <div id="div-success"><h5>Form submitted successfully.</h5></div>
