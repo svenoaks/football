@@ -7,6 +7,13 @@ include_once("db.php");
  * Date: 9/22/14
  * Time: 8:09 PM
  */
+
+$user = "richarddurden";
+$pw = "Zero";
+
+if (strtolower($_POST['user_name']) != $user || $_POST['user_password'] != $pw)
+    exit("INVALID CREDENTIALS");
+
 function startsWith($haystack, $needle)
 {
     return $needle === "" || strpos($haystack, $needle) === 0;

@@ -4,32 +4,134 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-       section {display: inline-block;}
+        section {
+            display: inline-block;
+        }
+        form {
+            border: 5px solid #333;
+            margin-bottom:20px;
+        }
+        div {
+            margin:5px;
+        }
+        input, button {
+            height:30px;
+            width:200px;
+        }
+        label {
+            vertical-align:top;
+        }
+        textarea {
+            width:500px;
+            text-height: 2em;
+        }
+        .m-form-div {
+            margin-bottom:20px;
+        }
+
     </style>
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/admin-submit.js"></script>
 </head>
 <body>
+<form id="form-variables">
+    <div class="m-form-div">
+        <h4 class="">Enter your administrator credentials:</h4>
+
+
+        <div class="form-group">
+            <label for="user_name">Username</label>
+            <input type="text" name="user_name" value="" class="form-control" id="user_name" placeholder="username"
+                   required>
+        </div>
+        <div class="form-group">
+            <label for="user_password">Password</label>
+            <input type="password" name="user_password" value="" class="form-control" id="user_password"
+                   placeholder="password"
+                   required>
+        </div>
+    </div>
+    <div>
+        <label>Current Week for Site</label>
+        <select name="week">
+            <?php
+            define ('MAX_WEEKS', 12);
+            $selected = ' selected=\"selected\"';
+            for ($i = 1; $i <= MAX_WEEKS; ++$i) {
+                if ($i == $week)
+                    $piece = $selected;
+                else
+                    $piece = "";
+                echo "<option value=\"$i\"$piece>$i</option>";
+            }
+            ?>
+            </select>
+    </div>
+    <div>
+        <label>Display the Scorecard</label>
+        <select name="scorecard">
+            <?php
+            if ($scorecardEnabled) {
+                echo "<option value=\"true\"$selected>true</option>";
+                echo "<option value=\"false\">false</option>";
+            } else {
+                echo "<option value=\"true\">true</option>";
+                echo "<option value=\"false\"$selected>false</option>";
+            }
+            ?>
+        </select>
+    </div>
+    <div>
+        <label>News Section 1</label>
+        <textarea name="news1" rows="15"><?=$news1?></textarea>
+    </div>
+    <div>
+        <label>News Section 2</label>
+        <textarea name="news2" rows="15"><?=$news2?></textarea>
+    </div>
+    <div>
+        <label>News Section 3</label>
+        <textarea name="news3" rows="15"><?=$news3?></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Form</button>
+    <h3 id="status">Status: </h3>
+</form>
 <form id="m-form">
-<ol role="list" class="ss-question-list" style="padding-left: 0">
-<div><h3>Select Week</h3>
+<div class="m-form-div">
+    <h4 class="">Enter your administrator credentials:</h4>
+
+
+    <div class="form-group">
+        <label for="user_name">Username</label>
+        <input type="text" name="user_name" value="" class="form-control" id="user_name" placeholder="username"
+               required>
+    </div>
+    <div class="form-group">
+        <label for="user_password">Password</label>
+        <input type="password" name="user_password" value="" class="form-control" id="user_password"
+               placeholder="password"
+               required>
+    </div>
+</div>
+
+<div><label>Select Week</label>
     <select name="week">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
+        <?php
+        define ('MAX_WEEKS', 12);
+        $selected = ' selected=\"selected\"';
+        for ($i = 1; $i <= MAX_WEEKS; ++$i) {
+            if ($i == $week)
+                $piece = $selected;
+            else
+                $piece = "";
+            echo "<option value=\"$i\"$piece>$i</option>";
+        }
+        ?>
     </select>
 </div>
 <section>
 <h3>Select PlayingA Team</h3>
+
 <div class="ss-form-question errorbox-good" role="listitem">
     <div dir="ltr" class="ss-item ss-item-required ss-select">
         <div class="ss-form-entry">
@@ -42,7 +144,7 @@
                 </div>
             </label>
             <select name="Aoption_american" id="entry_1580721518"
-                   >
+                >
                 <option value=""></option>
                 <option value="Central Florida (UCF)">Central Florida (UCF)</option>
                 <option value="Cincinnati">Cincinnati</option>
@@ -74,7 +176,7 @@
             </label>
             <select name="Aoption_acc" id="entry_628928305"
                     aria-label="ACC Select your team from the Atlantic Coast Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Boston College (BC)">Boston College (BC)</option>
                 <option value="Clemson">Clemson</option>
@@ -110,7 +212,7 @@
             </label>
             <select name="Aoption_big10" id="entry_51962862"
                     aria-label="Big Ten (B1G) Select your team from the Big Ten Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Illinois">Illinois</option>
                 <option value="Indiana">Indiana</option>
@@ -145,7 +247,7 @@
             </label>
             <select name="Aoption_big12" id="entry_151213574"
                     aria-label="Big 12 Select your team from the Big 12 Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Baylor">Baylor</option>
                 <option value="Iowa State">Iowa State</option>
@@ -176,7 +278,7 @@
             </label>
             <select name="Aoption_pacific12" id="entry_1832398034"
                     aria-label="Pacific-12 (PAC-12) Select your team from the Pacific-12 Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Arizona">Arizona</option>
                 <option value="Arizona State (ASU)">Arizona State (ASU)</option>
@@ -209,7 +311,7 @@
             </label>
             <select name="Aoption_southeastern" id="entry_1225990882"
                     aria-label="Southeastern (SEC) Select your team from the Southeastern Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Alabama">Alabama</option>
                 <option value="Arkansas">Arkansas</option>
@@ -244,7 +346,7 @@
             </label>
             <select name="Aoption_nonaq" id="entry_675408933"
                     aria-label="Non-AQ Select your team from any Non-AQ Division I FBS Schools "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Air Force">Air Force</option>
                 <option value="Akron">Akron</option>
@@ -314,7 +416,6 @@
             <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
 
 
-                
             </td>
         </tr>
         </tbody>
@@ -323,6 +424,7 @@
 </section>
 <section>
 <h3>Select PlayingB Team</h3>
+
 <div class="ss-form-question errorbox-good" role="listitem">
     <div dir="ltr" class="ss-item ss-item-required ss-select">
         <div class="ss-form-entry">
@@ -336,7 +438,7 @@
             </label>
             <select name="Boption_american" id="entry_1580721518"
                     aria-label="American Select your team from the American Athletic Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Central Florida (UCF)">Central Florida (UCF)</option>
                 <option value="Cincinnati">Cincinnati</option>
@@ -368,7 +470,7 @@
             </label>
             <select name="Boption_acc" id="entry_628928305"
                     aria-label="ACC Select your team from the Atlantic Coast Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Boston College (BC)">Boston College (BC)</option>
                 <option value="Clemson">Clemson</option>
@@ -404,7 +506,7 @@
             </label>
             <select name="Boption_big10" id="entry_51962862"
                     aria-label="Big Ten (B1G) Select your team from the Big Ten Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Illinois">Illinois</option>
                 <option value="Indiana">Indiana</option>
@@ -439,7 +541,7 @@
             </label>
             <select name="Boption_big12" id="entry_151213574"
                     aria-label="Big 12 Select your team from the Big 12 Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Baylor">Baylor</option>
                 <option value="Iowa State">Iowa State</option>
@@ -470,7 +572,7 @@
             </label>
             <select name="Boption_pacific12" id="entry_1832398034"
                     aria-label="Pacific-12 (PAC-12) Select your team from the Pacific-12 Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Arizona">Arizona</option>
                 <option value="Arizona State (ASU)">Arizona State (ASU)</option>
@@ -503,7 +605,7 @@
             </label>
             <select name="Boption_southeastern" id="entry_1225990882"
                     aria-label="Southeastern (SEC) Select your team from the Southeastern Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Alabama">Alabama</option>
                 <option value="Arkansas">Arkansas</option>
@@ -538,7 +640,7 @@
             </label>
             <select name="Boption_nonaq" id="entry_675408933"
                     aria-label="Non-AQ Select your team from any Non-AQ Division I FBS Schools "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Air Force">Air Force</option>
                 <option value="Akron">Akron</option>
@@ -607,7 +709,6 @@
             <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
 
 
-
             </td>
         </tr>
         </tbody>
@@ -616,6 +717,7 @@
 </section>
 <section>
 <h3>Select Winning Team</h3>
+
 <div class="ss-form-question errorbox-good" role="listitem">
     <div dir="ltr" class="ss-item ss-item-required ss-select">
         <div class="ss-form-entry">
@@ -629,7 +731,7 @@
             </label>
             <select name="Woption_american" id="entry_1580721518"
                     aria-label="American Select your team from the American Athletic Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Central Florida (UCF)">Central Florida (UCF)</option>
                 <option value="Cincinnati">Cincinnati</option>
@@ -661,7 +763,7 @@
             </label>
             <select name="Woption_acc" id="entry_628928305"
                     aria-label="ACC Select your team from the Atlantic Coast Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Boston College (BC)">Boston College (BC)</option>
                 <option value="Clemson">Clemson</option>
@@ -697,7 +799,7 @@
             </label>
             <select name="Woption_big10" id="entry_51962862"
                     aria-label="Big Ten (B1G) Select your team from the Big Ten Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Illinois">Illinois</option>
                 <option value="Indiana">Indiana</option>
@@ -732,7 +834,7 @@
             </label>
             <select name="Woption_big12" id="entry_151213574"
                     aria-label="Big 12 Select your team from the Big 12 Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Baylor">Baylor</option>
                 <option value="Iowa State">Iowa State</option>
@@ -763,7 +865,7 @@
             </label>
             <select name="Woption_pacific12" id="entry_1832398034"
                     aria-label="Pacific-12 (PAC-12) Select your team from the Pacific-12 Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Arizona">Arizona</option>
                 <option value="Arizona State (ASU)">Arizona State (ASU)</option>
@@ -796,7 +898,7 @@
             </label>
             <select name="Woption_southeastern" id="entry_1225990882"
                     aria-label="Southeastern (SEC) Select your team from the Southeastern Conference "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Alabama">Alabama</option>
                 <option value="Arkansas">Arkansas</option>
@@ -831,7 +933,7 @@
             </label>
             <select name="Woption_nonaq" id="entry_675408933"
                     aria-label="Non-AQ Select your team from any Non-AQ Division I FBS Schools "
-                    aria-required="true" >
+                    aria-required="true">
                 <option value=""></option>
                 <option value="Air Force">Air Force</option>
                 <option value="Akron">Akron</option>
@@ -894,23 +996,13 @@
 </div>
 
 
-<div class="ss-item ss-navigate">
-    <table id="navigation-table">
-        <tbody>
-        <tr>
-            <td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
-                <input type="submit" name="submit" value="Submit" id="ss-submit"
-                       class="jfk-button jfk-button-action ">
 
-
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 </section>
+<div class="ss-item ss-navigate">
+    <button type="submit" class="btn btn-primary">Submit Form</button>
+</div>
 <h3 id="last">Last inserted: NONE</h3>
-</ol>
+
 </form>
 </body>
 </html>

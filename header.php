@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
-    <title>Office Football</title>
+    <title>OfficeCFC</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">

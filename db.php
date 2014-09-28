@@ -18,12 +18,23 @@ class DbHandler
         $this->checkPersonStmt = $this->db->prepare("Select UserId From Person Where Name = ? And Pass = ?;");
     }
 
+
+
     public function __destruct()
     {
         $this->checkPersonStmt->close();
         $this->insertPickStmt->close();
         $this->insertPlayingStmt->close();
         $this->db->close();
+    }
+
+    public function insertVariables($week, $scorecard, $news1, $news2, $news3)
+    {
+        $variablesSql = <<<TAG
+INSERT INTO OfficeFootball.AdminVariables (VariablesId, Week, ScorecardEnabled, News1, News2, News3)
+VALUES (NULL, '$week', '$scorecard', '$news1', '$news2', '$news3');
+TAG;
+        return $this->db->query($variablesSql);
     }
 
     public function insertPlaying($A, $B, $W, $week)
@@ -61,6 +72,7 @@ class DbHandler
         $variablesSql = <<<TAG
 Select *
 From AdminVariables
+Order By VariablesId DESC
 TAG;
         return $this->db->query($variablesSql);
     }
