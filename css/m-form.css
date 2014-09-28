@@ -4,7 +4,7 @@
     display:none;
 }
 .m-form {
-   padding:15px;
+   padding:5px;
 }
 
 .m-modal-header {
@@ -23,4 +23,36 @@
 
     padding-top:10px;
     padding-bottom:10px;
+}
+
+.header-page {
+    margin-top:0;
+}
+
+h1, h2, h3, h4, h4, h5, h6, th {
+    color:#555;
+}
+
+label {
+    color:#555;
+}
+
+.modal h3, h4 {
+    color:#333;
+
+
+}
+
+.modal h4 {
+    margin-bottom: 15px;
+}
+
+.m-form-div {
+    padding: 10px 15px 10px 15px;
+    margin: 10px 0 10px 0;
+    border:1px solid #e5e5e5;
+    border-radius:4px;
+}
+.modal .m-form-div:nth-child(2) {
+    margin-top:20px;
 }

@@ -6,7 +6,7 @@
     <div class="div-internal">
         <div class="jumbotron m-jumbotron">
 
-            <h2><span class="">Office</span><span class="">CFC</span></h2>
+            <h2><span class="">Latest</span><span class=""> News</span></h2>
 
             <p class="">Week 1 is completed! It's still a little too soon to start official power rankings, but a
                 hierarchy is beginning to take shape. Pay attention as this week marks the beginning of serious

@@ -6,6 +6,12 @@ $(document).ready(function() {
     $('.m-fade').fadeIn(400);
     $('.m-show').show(600);
 
+    var url = document.URL;
+    if (url.indexOf("result") > -1 || url.indexOf("scorecard") > -1)
+    {
+        $('.btn-print').show(400);
+    }
+
     (function() {
         var request;
         var formSuccess = false;

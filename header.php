@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" media="print" href="css/bootstrap.min.css">
     <link href='css/m-form.css' type='text/css' rel='stylesheet'>
     <link href="css/index.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -44,7 +44,7 @@
 </div>
 <div class="modal-body">
 <div class="m-form-div">
-<h4 class="">Enter your credentials:</h4>
+    <h4 class="">Enter your credentials:</h4>
 
 
     <div class="form-group">
@@ -61,7 +61,7 @@
 </div>
 
 <div class="m-form-div">
-<h4 class="">Choose your teams:</h4>
+    <h4 class="">Choose your teams:</h4>
 
 
     <div class="form-group">
@@ -269,7 +269,8 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="<?php echoActiveClassIfRequestMatches("news") ?>"><a href="news.php">News</a></li>
-                <li class="<?php echoActiveClassIfRequestMatches("schedule") ?>"><a href="schedule.php">Schedule</a></li>
+                <li class="<?php echoActiveClassIfRequestMatches("schedule") ?>"><a href="schedule.php">Schedule</a>
+                </li>
                 <li class="<?php echoActiveClassIfRequestMatches("rankings") ?>"><a href="rankings.php">Rankings</a>
                 <li class="<?php echoActiveClassIfRequestMatches("scorecard") ?>"><a href="scorecard.php">Scorecard</a>
                 </li>
@@ -285,9 +286,14 @@
 
             </ul>
             <div class="navbar-form navbar-right navbar-collapse collapse">
-                <button class="navbar-right btn btn-default" role="button" data-toggle="modal" data-target="#formModal">
-                    Weekly Submission Form &raquo;
-                </button>
+                <div class="btn-group">
+                    <button class="btn-print btn btn-default" role="button" onClick="window.print()"><i class="fa fa-print fa-lg"></i>Print
+                    </button>
+                    <button class="btn btn-default" role="button" data-toggle="modal"
+                            data-target="#formModal"><i class="fa fa-check-square fa-lg"></i>
+                        Weekly Submission Form &raquo;
+                    </button>
+                </div>
             </div>
         </div>
 
