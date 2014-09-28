@@ -4,6 +4,7 @@ include_once("db.php");
 include_once("utility.php");
 
 $db = new DbHandler();
+CommonVariables::set($db);
 $week = CommonVariables::$currentTimePeriod;
 
 reset($_POST);
