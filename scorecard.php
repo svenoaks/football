@@ -7,6 +7,11 @@
  */
 include_once("utility.php");
 include_once("db.php");
+
+$db = new DbHandler();
+
+CommonVariables::set($db);
+
 include_once("header.php");
 
 if (!CommonVariables::$scorecardEnabled)
@@ -21,7 +26,9 @@ if (!CommonVariables::$scorecardEnabled)
 $scorecard = true;
 
 $week = CommonVariables::$currentTimePeriod;
-$allMatches = getAllMatches($week);
+
+
+$allMatches = getAllMatches($week, $db);
 $currentMatchesArray = $allMatches[$week];
 
 $scores = determineTotalScores($allMatches, $week - 1);

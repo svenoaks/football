@@ -7,13 +7,13 @@
  */
 include_once("utility.php");
 include_once("db.php");
+$db = new DbHandler();
+CommonVariables::set($db);
 include_once("header.php");
 
-
-$db = new DbHandler();
 $week = CommonVariables::$currentTimePeriod;
 
-$allMatches = getAllMatches($week);
+$allMatches = getAllMatches($week, $db);
 $lastMatchesArray = $allMatches[$week -1];
 $currentMatchesArray = $allMatches[$week];
 

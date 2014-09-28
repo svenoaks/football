@@ -8,7 +8,7 @@
     <div class="div-internal">
         <div class="jumbotron m-jumbotron">
 
-            <h2><span class="">Latest</span><span class=""> News</span></h2>
+            <h3><span class="">Latest</span><span class=""> News</span></h3>
 
             <p class=""><?=$news1?></p>
         </div>

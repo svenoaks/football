@@ -5,6 +5,7 @@
 button i {
     padding-right:7px;
 }
+
 .m-video {
     position: fixed; right: 0; bottom: 0;
     min-width: 100%; min-height: 100%;
@@ -22,7 +23,7 @@ button i {
     .div-internal {
         margin:2px;
         padding:20px 30px 30px 30px;
-        border:2px ridge #e5e5e5;
+        border:2px solid #e5e5e5;
         border-radius: 13px;
     }
     .container-news {
@@ -38,10 +39,16 @@ button i {
         z-index:1000;
         border:1.5px solid #999;
     }
+    .m-container {
+        padding-bottom:70px;
+    }
 }
 @media (max-width: 991px) {
     .container-news {
         margin-top:-20px;
+        padding-bottom:20px;
+    }
+    .m-container {
         padding-bottom:20px;
     }
 }
