@@ -1,4 +1,6 @@
-<video class="m-video" src="football.mp4" poster="football.png" autoplay loop muted>
+<video class="m-video" poster="football.png" autoplay loop muted>
+    <source src="football.webm" type="video/webm">
+    <source src="football.mp4" type="video/mp4">
 </video>
 
 
