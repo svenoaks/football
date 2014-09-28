@@ -15,7 +15,7 @@ $(document).ready(function() {
         $inputs.prop("disabled", true);
 
         request = $.ajax({
-            url: "../admin-playing.php",
+            url: "../admin-submit-playing.php",
             type: "post",
             data: serializedData
         });

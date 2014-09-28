@@ -1,4 +1,5 @@
 <?php
+
 class DbHandler
 {
     private $db;
@@ -28,11 +29,12 @@ class DbHandler
     public function insertPlaying($A, $B, $W, $week)
     {
         $this->insertPlayingStmt->bind_param('iiii', $week, $A, $B, $W);
-        $success =  $this->insertPlayingStmt->execute();
+        $success = $this->insertPlayingStmt->execute();
         $this->insertPlayingStmt->reset();
 
         return $success;
     }
+
     public function queryForUserId($name, $pass)
     {
         $this->checkPersonStmt->bind_param('ss', $name, $pass);
@@ -43,14 +45,24 @@ class DbHandler
 
         return $userId;
     }
+
     public function insertPick($userId, $timePeriodId, $teamId)
     {
         //echo $userId . ' '  .  $timePeriodId. ' ' . $teamId. "<br>";
         $this->insertPickStmt->bind_param('iii', $userId, $timePeriodId, $teamId);
-        $success =  $this->insertPickStmt->execute();
+        $success = $this->insertPickStmt->execute();
         $this->insertPickStmt->reset();
 
         return $success;
+    }
+
+    public function queryForVariables()
+    {
+        $variablesSql = <<<TAG
+Select *
+From AdminVariables
+TAG;
+        return $this->db->query($variablesSql);
     }
     public function queryForPick($userId, $week)
     {
@@ -62,6 +74,7 @@ TimePeriodId = $week
 TAG;
         return $this->db->query($pickSql);
     }
+
     public function queryForTeamId($name)
     {
         //TODO change to prepared
@@ -182,5 +195,5 @@ TAG;
         return $sql;
     }
 }
-	
+
 ?>

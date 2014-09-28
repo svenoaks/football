@@ -9,6 +9,15 @@ include_once("utility.php");
 include_once("db.php");
 include_once("header.php");
 
+if (!CommonVariables::$scorecardEnabled)
+{
+    echo "<div class=\"container m-container\"><h5 class=\"text-center\">
+            Your administrator has disabled the scorecard for this week until all forms are submitted.</h5></div>";
+    include_once("footer.php");
+    die();
+}
+
+
 $scorecard = true;
 
 $week = CommonVariables::$currentTimePeriod;

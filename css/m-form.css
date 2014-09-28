@@ -10,7 +10,7 @@
 .m-modal-header {
     border-bottom: 1px solid #e5e5e5;
     padding-left:0;
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 #div-success {
     display:none;
@@ -48,11 +48,15 @@ label {
 }
 
 .m-form-div {
-    padding: 10px 15px 10px 15px;
-    margin: 10px 0 10px 0;
-    border:1px solid #e5e5e5;
+    padding: 5px 15px 5px 15px;
+    margin:0;
+
     border-radius:4px;
 }
 .modal .m-form-div:nth-child(2) {
-    margin-top:20px;
+    margin-top:5px;
+}
+
+.divider-form {
+    border-top:1px solid #e5e5e5;
 }

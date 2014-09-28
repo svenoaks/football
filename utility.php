@@ -1,9 +1,26 @@
 <?php
 class CommonVariables {
-    static $currentTimePeriod = 5;
-    static $formEnabled = true;
-    static $scorecardEnabled= true;
+    static $currentTimePeriod;
+    static $formEnabled;
+    static $scorecardEnabled;
+
+    static $news1;
+    static $news2;
+    static $news3;
+
+    static function set($db) {
+        $variablesRs = $db->queryForVariables();
+        $variablesRs->data_seek(0);
+        $firstRow = $variablesRs->fetch_assoc();
+        CommonVariables::$currentTimePeriod = $firstRow['Week'];
+        CommonVariables::$scorecardEnabled = $firstRow['ScorecardEnabled'];
+        CommonVariables::$news1 = $firstRow['News1'];
+        CommonVariables::$news2 = $firstRow['News2'];
+        CommonVariables::$news3 = $firstRow['News3'];
+    }
 }
+
+
 function alreadyPicked($userId, $week, $db)
 {
     $pickRs = $db->queryForpick($userId, $week);
@@ -58,16 +75,16 @@ function determineTotalScores($allMatches, $limit)
     return $people;
 }
 
-function getAllMatches($maxWeek)
+function getAllMatches($maxWeek, $db)
 {
     $allMatches = array();
     for ($i = 1; $i <= $maxWeek; ++$i) {
-        $allMatches[$i] = getMatches($i);
+        $allMatches[$i] = getMatches($i, $db);
     }
     return $allMatches;
 }
 
-function getMatches($week)
+function getMatches($week, $db)
 {
     $db = new DbHandler();
     $matchesRs = $db->queryForMatches($week);
