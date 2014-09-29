@@ -6,11 +6,28 @@ $(document).ready(function() {
     $('.m-fade').fadeIn(400);
     $('.m-show').show(600);
 
-    var url = document.URL;
-    if (url.indexOf("result") > -1 || url.indexOf("scorecard") > -1)
-    {
-        $('.btn-print').show(400);
-    }
+    (function () {
+        var url = document.URL;
+
+        var mq = window.matchMedia('(min-width: 992px)');
+
+        function togglePrint(changed) {
+            if ((url.indexOf("result") > -1 || url.indexOf("scorecard") > -1) && changed.matches)
+            {
+                $('.btn-print').show(400);
+            }
+            else
+            {
+                $('.btn-print').hide();
+            }
+        }
+
+        mq.addListener(function(changed) {
+            togglePrint(changed);
+        });
+
+        togglePrint(mq);
+    })();
 
     (function() {
         var request;
