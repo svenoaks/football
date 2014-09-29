@@ -125,7 +125,7 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="option_big12">Big Ten</label>
+        <label for="option_big12">Big 12</label>
         <select name="option_big12" id="option_big12" class="form-control"
                 required>
             <option value=""></option>
