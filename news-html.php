@@ -13,7 +13,7 @@
         </div>
         <div class="m-show row">
             <div class=" col-md-4">
-                <h3 class="text-center">Leaderboard</h3>
+                <h3 class="text-center news-header">Leaderboard</h3>
 
                 <table class="table news-table">
                     <thead>
@@ -41,11 +41,11 @@
                         Complete Rankings &nbsp;<i class="fa fa-caret-right fa-lg"></i></a></p>
             </div>
             <div class=" col-md-4">
-                <h3 class="text-center">Current Schedule</h3>
+                <h3 class="text-center news-header">Current Schedule</h3>
                 <table class="table news-table">
                     <thead>
                     <tr>
-                        <th>Player &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vs.</th>
+                        <th>Player &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vs.</th>
                         <th></th>
                         <th class="">Player</th>
                     </tr>
@@ -66,8 +66,8 @@
                 <p class="news-link"><a href="schedule.php" class="text-center h6">
                         Complete Schedule &nbsp;<i class="fa fa-caret-right fa-lg"></i></a></p>
             </div>
-            <div class=" col-md-4">
-                <h3 class="text-center">Last Week's Results</h3>
+            <div class="col-md-4">
+                <h3 class="text-center news-header">Last Week's Results</h3>
                 <table class="table news-table">
                     <thead>
                     <tr>
