@@ -6,11 +6,7 @@
 
 <div class="container container-news">
     <div class="div-internal">
-
         <div class="jumbotron m-jumbotron">
-
-
-
             <h3><span class="">Latest</span><span class=""> News</span></h3>
 
             <p class=""><?=$news1?></p>
@@ -19,7 +15,7 @@
             <div class=" col-md-4">
                 <h3 class="text-center">Leaderboard</h3>
 
-                <table class="table">
+                <table class="table news-table">
                     <thead>
                     <tr>
                         <th>Player</th>
@@ -41,12 +37,12 @@
                     <?php } ?>
                     </tbody>
                 </table>
-
-
+                <p class="news-link"><a href="rankings.php" class="text-center h6">
+                        Complete Rankings &nbsp;<i class="fa fa-caret-right fa-lg"></i></a></p>
             </div>
             <div class=" col-md-4">
                 <h3 class="text-center">Current Schedule</h3>
-                <table class="table">
+                <table class="table news-table">
                     <thead>
                     <tr>
                         <th>Player &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vs.</th>
@@ -67,10 +63,12 @@
                     <?php } ?>
                     </tbody>
                 </table>
+                <p class="news-link"><a href="schedule.php" class="text-center h6">
+                        Complete Schedule &nbsp;<i class="fa fa-caret-right fa-lg"></i></a></p>
             </div>
             <div class=" col-md-4">
                 <h3 class="text-center">Last Week's Results</h3>
-                <table class="table">
+                <table class="table news-table">
                     <thead>
                     <tr>
                         <th>Winner</th>
@@ -98,6 +96,8 @@
                     <?php } ?>
                     </tbody>
                 </table>
+                <p class="news-link"><a href="results.php?week=<?=$week - 1?>" class="text-center h6">
+                        Week <?=$week - 1?> results &nbsp;<i class="fa fa-caret-right fa-lg"></i></a></p>
             </div>
         </div>
         <div class="m-row row">

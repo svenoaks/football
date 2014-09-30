@@ -4,14 +4,24 @@
 .body-gray {
     background-color:#DEDEDE;
 }
-
+.news-table {
+    margin-bottom:5px;
+}
 button i {
     padding-right:7px;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 strong, b {
     font-weight:500;
     color:#555;
+}
+
+.news-link {
+    padding-left:8px;
 }
 
 .m-video {

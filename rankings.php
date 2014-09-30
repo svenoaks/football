@@ -18,17 +18,7 @@ $lastMatchesArray = $allMatches[$week -1];
 $currentMatchesArray = $allMatches[$week];
 
 $scores = determineTotalScores($allMatches, $week - 1);
-uasort($scores, function($pA, $pB) {
-    if ($pA['score'] < $pB['score'])
-    {
-        return 1;
-    }
-    if ($pA['score'] > $pB['score'])
-    {
-        return -1;
-    }
-    return $pA['points'] < $pB['points'];
-});
+sortForRankings($scores, $allMatches, $week);
 
 include_once("rankings-html.php");
 include_once("footer.php");

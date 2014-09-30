@@ -20,7 +20,64 @@ class CommonVariables {
     }
 }
 
+function sortForRankings(&$scores, $allMatches, $currentWeek)
+{
+    uasort($scores, function ($pA, $pB) use ($allMatches, $currentWeek) {
+        if ($pA['score'] < $pB['score']) {
+            return 1;
+        }
+        if ($pA['score'] > $pB['score']) {
+            return -1;
+        }
+        if ($pA['points'] < $pB['points'])
+            return 1;
+        if ($pA['points'] > $pB['points'])
+            return -1;
 
+        return compareHeadToHead($pA, $pB, $allMatches, $currentWeek - 1);
+    });
+}
+
+function compareHeadToHead(&$pA, &$pB, $allMatches, $limit)
+{
+    $paScore = 0;
+    $pbScore = 0;
+
+    for ($i = 1; $i <= $limit; ++$i) {
+        foreach ($allMatches[$i] as $match)
+        {
+            $personA = $match['personA'];
+            $personB = $match['personB'];
+
+            if ($personA->getAlias() == $pA['alias'] &&
+                $personB->getAlias() == $pB['alias'])
+            {
+                if($personA->getScore($i) > $personB->getScore($i))
+                    $paScore++;
+
+                if($personA->getScore($i) < $personB->getScore($i))
+                    $pbScore++;
+            }
+            else if ($personA->getAlias() == $pB['alias'] &&
+                     $personB->getAlias() == $pA['alias'])
+            {
+                if($personA->getScore($i) > $personB->getScore($i))
+                    $pbScore++;
+
+                if($personA->getScore($i) < $personB->getScore($i))
+                    $paScore++;
+            }
+        }
+    }
+
+    if ($paScore < $pbScore) {
+        return 1;
+    }
+    if ($paScore > $pbScore) {
+        return -1;
+    }
+    return 0;
+}
 function alreadyPicked($userId, $week, $db)
 {
     $pickRs = $db->queryForpick($userId, $week);
@@ -47,7 +104,6 @@ function retrieveAliasFor($person, $db)
 
 function determineTeamId($name, $db)
 {
-
     $teamRs = $db->queryForTeamId($name);
     $teamRs->data_seek(0);
     return $teamRs->fetch_assoc()['TeamId'];
@@ -61,9 +117,11 @@ function determineTotalScores($allMatches, $limit)
             $personA = $match['personA'];
             $personB = $match['personB'];
             if (!array_key_exists($personA->getAlias(), $people))
-                $people[$personA->getAlias()] = array('score' => 0, 'points' => 0);
+                $people[$personA->getAlias()] =
+                    array('alias' => $personA->getAlias(), 'score' => 0, 'points' => 0);
             if (!array_key_exists($personB->getAlias(), $people))
-                $people[$personB->getAlias()] = array('score' => 0, 'points' => 0);
+                $people[$personB->getAlias()] =
+                    array('alias' => $personB->getAlias(), 'score' => 0, 'points' => 0);
 
             if ($personA->getWin($i)) $people[$personA->getAlias()]['score']++;
             if ($personB->getWin($i)) $people[$personB->getAlias()]['score']++;
