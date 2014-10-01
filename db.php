@@ -28,6 +28,10 @@ class DbHandler
         $this->db->close();
     }
 
+    function getErrors() {
+        return $this->db->error_list;
+    }
+
     public function insertVariables($week, $scorecard, $news1, $news2, $news3)
     {
         $variablesSql = <<<TAG

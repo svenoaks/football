@@ -34,6 +34,8 @@ if (count($picks) != NUM_TO_PICK)
 foreach($picks As $teamId)
 {
     if (isset($teamId)) $db->insertPick($userId, $week, $teamId);
+    if (count($db->getErrors()) > 0)
+        exit (end($db->getErrors()));
 }
 
 exit ("success");
