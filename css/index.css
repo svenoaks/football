@@ -43,7 +43,7 @@ strong, b {
         padding-top:35px;
     }
     .div-bg {
-        background-image: url("../field.jpg");
+        background-image: url("../football.png");
         background-size:cover;
         padding-top:60px;
         padding-bottom:70px;
@@ -73,7 +73,7 @@ strong, b {
 }
 @media (max-width: 991px) {
     .container-news {
-       
+
         padding-bottom:20px;
     }
     .m-container {
