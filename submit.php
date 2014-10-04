@@ -18,6 +18,8 @@ if (!isset($userId) || $userId == "") exit ("Invalid Username and Password Combi
 if (alreadyPicked($userId, $week, $db)) exit ("You already picked this week.");
 
 $picks = array();
+$opponentPicks = array();
+
 
 while (list($key, $value) = each($_POST))
 {
@@ -31,6 +33,16 @@ define ("NUM_TO_PICK",  7);
 if (count($picks) != NUM_TO_PICK)
         exit ("You must make a selection for all conferences.");
 
+$matches = getMatches($week, $db);
+$opponentId = determineOpponent($userId, $matches);
+
+fillPicks($opponentPicks, $week, $opponentId, $db);
+$samePicks = doPicksMatch($picks, $opponentPicks);
+
+if ($samePicks)
+{
+    exit("Your opponent picked all of the same teams, please change at least one team.");
+}
 foreach($picks As $teamId)
 {
     if (isset($teamId)) $db->insertPick($userId, $week, $teamId);

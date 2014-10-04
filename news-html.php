@@ -1,7 +1,4 @@
-<video class="m-video" poster="football.png" autoplay loop muted>
-    <source src="football.webm" type="video/webm">
-    <source src="football.mp4" type="video/mp4">
-</video>
+<div class="div-bg">
 
 
 <div class="container container-news">
@@ -11,7 +8,7 @@
 
             <p class=""><?=$news1?></p>
         </div>
-        <div class="m-show row">
+        <div class="m-fade row">
             <div class=" col-md-4">
                 <h3 class="text-center news-header">Leaderboard</h3>
 
@@ -114,3 +111,5 @@
 </div>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/news.js"></script>
+
+</div>

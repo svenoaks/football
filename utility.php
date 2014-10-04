@@ -1,5 +1,7 @@
 <?php
-class CommonVariables {
+
+class CommonVariables
+{
     static $currentTimePeriod;
     static $formEnabled;
     static $scorecardEnabled;
@@ -8,7 +10,8 @@ class CommonVariables {
     static $news2;
     static $news3;
 
-    static function set($db) {
+    static function set($db)
+    {
         $variablesRs = $db->queryForVariables();
         $variablesRs->data_seek(0);
         $firstRow = $variablesRs->fetch_assoc();
@@ -38,33 +41,61 @@ function sortForRankings(&$scores, $allMatches, $currentWeek)
     });
 }
 
+function determineOpponent($userId, $matches)
+{
+    foreach ($matches as $match) {
+        if ($match['personA']->getId() == $userId) {
+            return $match['personB']->getId();
+        }
+        if ($match['personB']->getId() == $userId) {
+            return $match['personA']->getId();
+        }
+    }
+    return -1;
+}
+
+function doPicksMatch($picksA, $picksB)
+{
+    sort($picksA);
+    sort($picksB);
+
+    return $picksA == $picksB;
+}
+
+function fillPicks(&$array, $week, $userId, $db)
+{
+    $pickRs = $db->queryForpick($userId, $week);
+    $pickRs->data_seek(0);
+    while ($row = $pickRs->fetch_assoc()) {
+        array_push($array, $row['TeamId']);
+    }
+}
+
 function compareHeadToHead(&$pA, &$pB, $allMatches, $limit)
 {
     $paScore = 0;
     $pbScore = 0;
 
     for ($i = 1; $i <= $limit; ++$i) {
-        foreach ($allMatches[$i] as $match)
-        {
+        foreach ($allMatches[$i] as $match) {
             $personA = $match['personA'];
             $personB = $match['personB'];
 
             if ($personA->getAlias() == $pA['alias'] &&
-                $personB->getAlias() == $pB['alias'])
-            {
-                if($personA->getScore($i) > $personB->getScore($i))
+                $personB->getAlias() == $pB['alias']
+            ) {
+                if ($personA->getScore($i) > $personB->getScore($i))
                     $paScore++;
 
-                if($personA->getScore($i) < $personB->getScore($i))
+                if ($personA->getScore($i) < $personB->getScore($i))
                     $pbScore++;
-            }
-            else if ($personA->getAlias() == $pB['alias'] &&
-                     $personB->getAlias() == $pA['alias'])
-            {
-                if($personA->getScore($i) > $personB->getScore($i))
+            } else if ($personA->getAlias() == $pB['alias'] &&
+                $personB->getAlias() == $pA['alias']
+            ) {
+                if ($personA->getScore($i) > $personB->getScore($i))
                     $pbScore++;
 
-                if($personA->getScore($i) < $personB->getScore($i))
+                if ($personA->getScore($i) < $personB->getScore($i))
                     $paScore++;
             }
         }
@@ -78,23 +109,25 @@ function compareHeadToHead(&$pA, &$pB, $allMatches, $limit)
     }
     return 0;
 }
+
 function alreadyPicked($userId, $week, $db)
 {
     $pickRs = $db->queryForpick($userId, $week);
     $pickRs->data_seek(0);
     return $pickRs->num_rows;
 }
+
 function didPick($teamId, $userId, $week, $db)
 {
     $pickRs = $db->queryForpick($userId, $week);
     $pickRs->data_seek(0);
-    while($row = $pickRs->fetch_assoc())
-    {
+    while ($row = $pickRs->fetch_assoc()) {
         if ($row['TeamId'] == $teamId)
             return true;
     }
     return false;
 }
+
 function retrieveAliasFor($person, $db)
 {
     $aliasRs = $db->queryForAlias($person);
@@ -247,14 +280,17 @@ class Person
     {
         return $this->id;
     }
+
     public function getTotalPoints()
     {
         return $this->totalPoints;
     }
+
     public function incrementPoints()
     {
         $this->totalPoints++;
     }
+
     public function pushPick($pick)
     {
         array_push($this->picks, $pick);
@@ -343,7 +379,9 @@ class Pick
     {
         return $this->conditionalWin;
     }
-    public function isBadPick() {
+
+    public function isBadPick()
+    {
         return $this->badPick;
     }
 }

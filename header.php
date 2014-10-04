@@ -289,7 +289,7 @@
                 <div class="btn-group">
                     <button class="btn-print btn btn-default" role="button" onClick="window.print()"><i class="fa fa-print fa-lg"></i>Print
                     </button>
-                    <button class="btn btn-default" role="button" data-toggle="modal"
+                    <button class="btn btn-default" <?php if (CommonVariables::$scorecardEnabled) echo "disabled=\"disabled\" "; ?>role="button" data-toggle="modal"
                             data-target="#formModal"><i class="fa fa-check-square fa-lg"></i>
                         Weekly Submission Form &raquo;
                     </button>

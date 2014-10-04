@@ -14,13 +14,10 @@
 }
 #div-success {
     display:none;
-    margin-top:-20px;
     text-align:center;
-
-
 }
 #div-success h5 {
-
+    margin:0;
     padding-top:10px;
     padding-bottom:10px;
 }
