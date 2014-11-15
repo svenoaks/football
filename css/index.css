@@ -1,3 +1,6 @@
+.m-row ul li {
+    line-height:30px;
+}
 .btn-print {
     display:none;
 }
