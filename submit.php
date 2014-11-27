@@ -45,9 +45,9 @@ if ($samePicks)
 }
 foreach($picks As $teamId)
 {
-    if (isset($teamId)) $db->insertPick($userId, $week, $teamId);
-    if (count($db->getErrors()) > 0)
-        exit (end($db->getErrors()));
+    if (!isset($teamId) ||
+        !$db->insertPick($userId, $week, $teamId))
+            exit ('Error submitting form.');
 }
 
 exit ("success");
